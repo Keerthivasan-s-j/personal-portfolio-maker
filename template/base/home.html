@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loding Static Files -->
+    {% load static %}
+    <!-- Font Awsom Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logo/logo.png' %}">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <title>Portfolio | Home</title>
 </head>
 <body>
-    <h1>Hello This is the Home page</h1>
+    <nav class="nav-bar">
+        <div class="logo-nav-links">
+            <div class="logo-cnt">
+                <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
+                <h1>Portfolio</h1>
+            </div>
+            <div class="nav-links">
+                <a href="" class="nav-link">Home</a>
+                <a href="" class="nav-link">About</a>
+                <a href="" class="nav-link">Contact</a>
+                <a href="" class="nav-link">Blogs</a>
+            </div>
+        </div>
+        <div class="searchbar-profile-cnt">
+            <form class="searchbar-cnt" method="post">
+                {% csrf_token %}
+                <div class="searchbox">
+                    <input type="text" id="search" name="search" placeholder="Type to search" class="search">
+                </div>
+                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </form>
+            <div class="login-signup-cnt">
+                <a href="" class="nav-link"><button type="button" class="signin-signup-btn">Sign In / Sign Up</button></a>
+            </div>
+        </div>
+    </nav>
+    <main class="main-cnt">
+        
+    </main>
 </body>
 </html>

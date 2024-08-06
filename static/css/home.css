@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Capriola&family=Mochiy+Pop+P+One&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Neon&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.nav-bar,
+.logo-cnt,
+.nav-links,
+.logo-nav-links,
+.searchbar-profile-cnt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Nunito Sans;
+}
+.nav-bar{
+    padding: 10px 2rem;
+    box-shadow: 1px 0px 5px #ccc;
+}
+.nav-links,
+.logo-nav-links,
+.searchbar-profile-cnt{
+    gap: 30px;
+}
+.logo-cnt{
+    gap: 20px;
+}
+.nav-link{
+    font-size: 1.1rem;
+    color: black;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.nav-link:hover{
+    color: rgb(37, 149, 224);
+}
+.search,
+.search-btn,
+.signin-signup-btn{
+    padding: 10px 20px;
+    border: none;
+}
+.searchbar-cnt{
+    display: flex;
+    align-items: center;
+}
+.search{
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 13.5px;
+    border-radius: 4px 0 0 4px;
+    border-right: 0;
+    transition: all 0.3s ease;
+}
+.search:focus,
+.search:hover{
+    outline: none;
+    border-color: rgb(37, 149, 224);
+}
+.search-btn{
+    color: white;
+    background-color: rgb(37, 149, 224);
+    border-radius: 0 4px 4px 0;
+}
+.search-btn,
+.signin-signup-btn{
+    padding: 11px 21px;
+    font-size: 13px;
+}
+.signin-signup-btn{
+    border-radius: 4px;
+    background-color: white;
+    border: 1px solid rgb(37, 149, 224);
+    color: rgb(37, 149, 224);
+    transition: all 0.5s ease;
+}
+.signin-signup-btn:hover{
+    color: white;
+    background-color: rgb(37, 149, 224);
+}
+.main-cnt{
+    padding: 10px;
+}
