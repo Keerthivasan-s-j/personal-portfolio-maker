@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Navbar style */
 .nav-bar,
 .logo-cnt,
 .nav-links,
@@ -67,18 +68,39 @@
 .signin-signup-btn{
     padding: 11px 21px;
     font-size: 13px;
+    transition: all 0.5s ease;
 }
 .signin-signup-btn{
     border-radius: 4px;
     background-color: white;
     border: 1px solid rgb(37, 149, 224);
     color: rgb(37, 149, 224);
-    transition: all 0.5s ease;
 }
 .signin-signup-btn:hover{
     color: white;
     background-color: rgb(37, 149, 224);
 }
+.search-btn:hover{
+    background-color: rgb(31, 132, 200);
+}
+/* Main container */
 .main-cnt{
-    padding: 10px;
+    margin: 50px 100px;
+    padding: 1rem;
+    font-family: Nunito sans;
+    height: 80vh;
+    border-radius: 10px;
+}
+/* Footer Style */
+.footer-cnt{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: Nunito sans;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 10px;
+    color: white;
+    background-color: #333;
+    height: 350px;
 }

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Capriola&family=Mochiy+Pop+P+One&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Neon&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Nunito Sans;
+}
+.logo-cnt{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+}
+.main-cnt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-cnt,
+.input-cnt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+.form-cnt{
+    padding: 40px 80px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+.input-box{
+    position: relative;
+}
+.input-box>i{
+    font-size: 1rem;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    vertical-align: middle;
+}
+.input-box>input{
+    font-size: 1rem;
+    line-height: 2rem;
+    padding: 0 20px 0 35px;
+    border: 2px solid #bebebe;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+}
+.input-box>input:hover{
+    border-color: #707070;
+}
+.input-box>input:focus{
+    outline: none;
+    border-color: rgb(37, 149, 224);
+}
+.form-links-cnt{
+    width: 100%;
+}
+.form-links{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.form-links a{
+    text-decoration: none;
+    color: rgb(37, 149, 224);
+}
+.signup-btn,
+.signin-btn{
+    padding: 11px 21px;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    width: 150px;
+    background-color: rgb(37, 149, 224);
+}
+
+/* Style for Sign In */

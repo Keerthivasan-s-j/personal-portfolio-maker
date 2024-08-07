@@ -14,6 +14,7 @@
     <title>Portfolio | Home</title>
 </head>
 <body>
+    {% block nav %}
     <nav class="nav-bar">
         <div class="logo-nav-links">
             <div class="logo-cnt">
@@ -36,12 +37,21 @@
                 <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             </form>
             <div class="login-signup-cnt">
-                <a href="" class="nav-link"><button type="button" class="signin-signup-btn">Sign In / Sign Up</button></a>
+                <a href="{% url 'user_login' %}" class="nav-link"><button type="button" class="signin-signup-btn">Sign In / Sign Up</button></a>
             </div>
         </div>
     </nav>
+    {% endblock %}
     <main class="main-cnt">
-        
+        {% block main %}
+        {% endblock %}
     </main>
+    {% block footer %}
+    <footer class="footer-cnt">
+        <div class="copyright">
+            <p>&copy;2024 reserved portfolio.com</p>
+        </div>
+    </footer>
+    {% endblock %}
 </body>
 </html>

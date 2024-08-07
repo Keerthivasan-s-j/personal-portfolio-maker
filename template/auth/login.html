@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loding Static Files -->
+    {% load static %}
+    <!-- Font Awsom Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logo/logo.png' %}">
+    <!-- Box icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Portfolio | Login</title>
+</head>
+<body>
+    <nav class="logo-cnt">
+        <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
+        <h1>Portfolio</h1>
+    </nav>
+    <main class="main-cnt">
+        {% block main %}
+        <form action="" class="form-cnt" method="post">
+            {% csrf_token %}
+            <div class="form-title">
+                <h1 class="title">Sign Up</h1>
+            </div>
+            <div class="input-cnt">
+                <div class="input-box">
+                    <input type="text" name="uname_or_email" id="uname_or_email" placeholder="Username or Email">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+            </div>
+            <div class="form-links-cnt">
+                <div class="form-links">
+                    <div class="forget-pwd">
+                        <a href="">Forgot password?</a>
+                    </div>
+                    <div class="signin">
+                        <p>Don't have an account? <a href="{% url 'user_signin' %}">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="submit-cnt">
+                <input type="submit" value="Sign Up" class="signup-btn">
+            </div>
+        </form>
+        {% endblock %}
+    </main>
+</body>
+</html>
