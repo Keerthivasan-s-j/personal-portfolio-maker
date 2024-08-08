@@ -94,13 +94,75 @@
 /* Footer Style */
 .footer-cnt{
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
     font-family: Nunito sans;
     padding: 30px;
     margin: 30px;
     border-radius: 10px;
     color: white;
     background-color: #333;
-    height: 350px;
+}
+.footer-cols{
+    display: grid;
+    width: 100%;
+    gap: 40px;
+    margin-bottom: 40px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.title{
+    margin-bottom: 20px;
+}
+.about-details,
+.contact-details{
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 2rem;
+}
+.footer-nav{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.footer-nav-link{
+    width: 100px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.footer-nav-link:hover{
+    color: #007FFF;
+}
+.social-links-icons>i{
+    margin: 1rem;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+.social-links-icons>i:hover{
+    color: #007FFF;
+}
+.mail-btn{
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    color: white;
+    background-color: #007FFF;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+}
+.mail-btn:hover{
+    background-color: #0075e9;
+}
+.mail-btn>i{
+    margin-right: 10px;
+}
+.footer-logo{
+    display: flex;
+    position: absolute;
+    gap: 20px;
+    bottom: 30px;
+    right: 30px;
 }

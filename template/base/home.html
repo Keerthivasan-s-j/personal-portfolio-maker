@@ -19,7 +19,7 @@
         <div class="logo-nav-links">
             <div class="logo-cnt">
                 <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
-                <h1>Portfolio</h1>
+                <h1 class="logo-name">Portfolio</h1>
             </div>
             <div class="nav-links">
                 <a href="" class="nav-link">Home</a>
@@ -48,8 +48,44 @@
     </main>
     {% block footer %}
     <footer class="footer-cnt">
+        <div class="footer-cols">
+            <div class="footer-about">
+                <h3 class="title">About</h3>
+                <p class="about-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. At sit similique dignissimos minima odio excepturi, possimus, culpa eius aliquid laboriosam reiciendis quos aperiam? Possimus molestiae sunt vitae, quod neque dolor?</p>
+                <div class="social-links-icons">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-github"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-x-twitter"></i>   
+                    <i class="fa-brands fa-whatsapp"></i>                 
+                </div>
+            </div>
+            <div class="footer-contact-cnt">
+                <h3 class="title">Contact Information</h3>
+                <div class="contact-details">
+                    <p>Have a project idea? Click the button below to email me, and let's make it happen!</p>
+                </div>
+                <div class="mail-btn-cnt">
+                    <button class="mail-btn" type="button"><i class="fa-solid fa-envelope"></i> Email Me</button>
+                </div>
+            </div>
+            <div class="footer-nav-cnt">
+                <h3 class="title">Navigations</h3>
+                <div class="footer-nav">
+                    <a href="" class="footer-nav-link">Home</a>
+                    <a href="" class="footer-nav-link">About</a>
+                    <a href="" class="footer-nav-link">Contact</a>
+                    <a href="" class="footer-nav-link">Blogs</a>
+                </div>
+            </div>
+        </div>
         <div class="copyright">
             <p>&copy;2024 reserved portfolio.com</p>
+        </div>
+        <div class="footer-logo">
+            <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="30px">
+            <h2 class="logo-name">Portfolio</h2>
         </div>
     </footer>
     {% endblock %}
