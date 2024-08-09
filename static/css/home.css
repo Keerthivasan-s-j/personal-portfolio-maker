@@ -135,12 +135,13 @@
 .footer-nav-link:hover{
     color: #007FFF;
 }
-.social-links-icons>i{
+.social-links-icons>a>i{
+    color: white;
     margin: 1rem;
     font-size: 2rem;
     transition: all 0.3s ease;
 }
-.social-links-icons>i:hover{
+.social-links-icons>a>i:hover{
     color: #007FFF;
 }
 .mail-btn{
@@ -148,6 +149,7 @@
     font-size: 1rem;
     border: none;
     color: white;
+    cursor: pointer;
     background-color: #007FFF;
     border-radius: 5px;
     margin-top: 1rem;
