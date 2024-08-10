@@ -1,0 +1,105 @@
+@import url('home.css');
+.profile-header,
+.profile-about-cnt,
+.profile-skills-cnt{
+    display: flex;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+.profile-header{
+    justify-content: space-between;
+}
+.profile-cnt{
+    display: flex;
+}
+.profile{
+    position: relative;
+    margin-right: 20px;
+}
+.profile>.edit-cnt{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.edit-btn{
+    background-color: white;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 50%;
+    border: 1px solid rgb(37, 149, 224);
+    color: rgb(37, 149, 224);
+    vertical-align: middle;
+    cursor: pointer;
+}
+.profile-photo-cnt{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-photo{
+    height: 100px;
+    max-width: 100%;
+    margin: auto;
+}
+.name-cnt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.location{
+    font-size: 1rem;
+    line-height: 2rem;
+    color: gray;
+}
+.share-btn{
+    background-color: transparent;
+    color: #007FFF;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+.share-btn>i{
+    margin-left: 10px;
+    font-size: 20px;
+}
+.profile-about-cnt,
+.profile-skills-cnt{
+    position: relative;
+    flex-direction: column;
+}
+.profile-about-cnt>.edit-cnt,
+.profile-skills-cnt>.edit-cnt{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.profile-about-title,
+.profile-skills-title{
+    margin-bottom: 1rem;
+}
+.profile-about-me{
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 2rem;
+}
+.profle-skills-list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+}
+.skills{
+    background-color: #f1f1f1;
+    color: gray;
+    padding-inline: 14px;
+    margin: 5px;
+    font-size: 1rem;
+    line-height: 2rem;
+    border-radius: 1rem;
+}

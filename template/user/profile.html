@@ -1,5 +1,68 @@
 {% extends '../base/home.html' %}
 
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
 {% block main %}
-<h1>Welcome {{uname}}</h1>
+<div class="profile-header">
+    <div class="profile-cnt">
+        <div class="profile">
+            <div class="profile-photo-cnt">
+                <img src="{% static 'images\profile\profilepic.jpg' %}" alt="" class="profile-photo">
+            </div>
+            <div class="edit-cnt">
+                <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            </div>
+        </div>
+        <div class="user-identity-cnt">
+            <div class="name-cnt">
+                <h1 class="name">Keerthivasan S J</h1>
+                <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            </div>
+            <div class="location">
+                <p><i class="fa-solid fa-location-dot"></i> Trichy, India</p>
+            </div>
+        </div>
+    </div>
+    <div class="share-btn-cnt">
+        <button type="button" class="share-btn">Share <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+    </div>
+</div>
+<div class="profile-about-cnt">
+    <div class="profile-about-title-cnt">
+        <h1 class="profile-about-title">Expert Web Designer with Django experience</h1>
+    </div>
+    <div class="profle-about-me-cnt">
+        <p class="profile-about-me">
+            Hello! I'm Keerthivasan S J, a passionate Python programmer and web developer. I thrive on turning complex problems into simple, beautiful solutions. With a solid foundation in Python and hands-on experience from my web development internship, I'm eager to bring my skills to real-world projects. Let's collaborate to create something amazing!
+        </p>
+    </div>
+    <div class="edit-cnt">
+        <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+    </div>
+</div>
+<div class="profile-skills-cnt">
+    <h1 class="profile-skills-title">Skills</h1>
+    <div class="profle-skills-list">
+        <span class="skills">Django</span>
+        <span class="skills">Html</span>
+        <span class="skills">CSS</span>
+        <span class="skills">Java</span>
+        <span class="skills">JavaScript</span>
+        <span class="skills">Python</span>
+        <span class="skills">SQL</span>
+        <span class="skills">MySQL</span>
+        <span class="skills">C</span>
+        <span class="skills">Git</span>
+        <span class="skills">GitHub</span>
+        <span class="skills">Problem Solving</span>
+    </div>
+    <div class="edit-cnt">
+        <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+    </div>
+</div>
+<!-- <h1>{{uname}}</h1> -->
 {% endblock %}

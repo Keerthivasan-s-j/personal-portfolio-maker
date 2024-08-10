@@ -83,12 +83,30 @@
 .search-btn:hover{
     background-color: rgb(31, 132, 200);
 }
+.user-profile-cnt{
+    display: flex;
+    align-items: center;
+}
+.user-profile{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.user-profile-photo{
+    max-width: 100%;
+    margin: auto;
+}
 /* Main container */
 .main-cnt{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin: 50px 100px;
     padding: 1rem;
     font-family: Nunito sans;
-    height: 80vh;
     border-radius: 10px;
 }
 /* Footer Style */
