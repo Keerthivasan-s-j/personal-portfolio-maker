@@ -5,7 +5,8 @@
 .certifications-cnt,
 .experiences-cnt,
 .education-cnt,
-.languages-known-cnt{
+.languages-known-cnt,
+.project-cnt{
     display: flex;
     padding: 40px;
     border-radius: 20px;
@@ -13,6 +14,7 @@
 }
 .profile-header{
     justify-content: space-between;
+    align-items: center;
 }
 .profile-cnt{
     display: flex;
@@ -23,8 +25,8 @@
 }
 .profile>.edit-cnt{
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 20px;
+    bottom: 20px;
 }
 .edit-btn{
     background-color: white;
@@ -36,9 +38,18 @@
     vertical-align: middle;
     cursor: pointer;
 }
+.profile>.edit-cnt>.edit-btn{
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 50%;
+    border: 2px solid #5170d7;
+    color: #5170d7;
+    vertical-align: middle;
+    cursor: pointer;
+}
 .profile-photo-cnt{
-    height: 150px;
-    width: 150px;
+    height: 300px;
+    width: 300px;
     border-radius: 50%;
     border: 1px solid #ccc;
     overflow: hidden;
@@ -48,13 +59,14 @@
     align-items: center;
 }
 .profile-photo{
-    height: 150px;
+    height: 300px;
     max-width: 100%;
     margin: auto;
 }
 .user-identity-cnt{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
 }
 .name-cnt{
@@ -62,22 +74,49 @@
     align-items: center;
     gap: 20px;
 }
+.name{
+    font-size: 2.5rem;
+}
+.pronouns{
+    font-size: 1.5rem;
+}
 .location{
     font-size: 1rem;
     line-height: 2rem;
-    color: gray;
+}
+.location>p>i{
+    margin-right: 10px;
+}
+.btn-cnt{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.open-to-work,
+.resume{
+    background-color: #d1ffc0;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    vertical-align: middle;
+    color: green;
 }
 .resume{
-    padding: 12px 20px;
-    font-size: 1rem;
-    color: white;
-    background-color: #5170d7;
-    border: none;
-    border-radius: 5px;
+    background-color: #0039e3;
+    color: whitesmoke;
     cursor: pointer;
 }
-.resume>i{
+.uname>i,
+.dob>i,
+.resume>i,
+.open-to-work>i{
     margin-right: 10px;
+}
+.share-cnt{
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
 }
 .share-btn{
     background-color: transparent;
@@ -95,7 +134,8 @@
 .profile-skills-cnt,
 .certifications-cnt,
 .experiences-cnt,
-.languages-known-cnt{
+.languages-known-cnt,
+.project-cnt{
     position: relative;
     flex-direction: column;
 }
@@ -112,19 +152,21 @@
 .profile-skills-title,
 .certification-title,
 .experiences-title,
-.languages-known-title{
+.languages-known-title,
+.project-title{
     margin-bottom: 1rem;
 }
 .profile-about-me{
     text-align: justify;
-    font-size: 1rem;
+    font-size: 20px;
     line-height: 2rem;
 }
 .profle-skills-list,
 .languages-known-list{
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    padding: 30px 0 0 0;
+    border-top: 1px solid #ccc;
 }
 .skills,
 .languages{
@@ -136,15 +178,31 @@
     line-height: 2rem;
     border-radius: 1rem;
 }
-.certificate{
+/* profeciancy level */
+/* .beginner{
+    background-color: #d1ffc0;
+    color: #17B169;
+}
+.intermediate{
+    background-color: #ffebc0;
+    color: #b18517;
+}
+.expert{
+    background-color: #c0d1ff;
+    color: #1738b1;
+} */
+/*  */
+.certificate,
+.project{
     display: flex;
     align-items: center;
     position: relative;
     gap: 30px;
-    padding: 30px;
+    padding: 30px 0 30px 30px;
     border-top: 1px solid #ccc;
 }
-.certificate-provier-logo-cnt{
+.certificate-provier-logo-cnt,
+.project-image-cnt{
     width: 150px;
     height: 150px;
     overflow: hidden;
@@ -152,42 +210,51 @@
 }
 .add-btn{
     font-size: 30px;
-    color: #5170d7;
+    color: #17B169;
     cursor: pointer;
 }
 .delete-btn{
-    color: #5170d7;
+    color: #ff6b6b;
     font-size: 25px;
     cursor: pointer;
     margin-left: 20px;
+    height: 30px;
 }
 .education-title-cnt,
 .certification-title-cnt,
-.experiences-title-cnt{
+.experiences-title-cnt,
+.project-title-cnt,
+.profile-skills-title-cnt,
+.languages-known-title-cnt{
     display: flex;
     justify-content: space-between;
 }
-.certificate-details-cnt{
+.certificate-details-cnt,
+.project-details-cnt{
     display: flex;
-    width: 85%;
+    width: 100%;
     justify-content: space-between;
 }
 .certificate-details,
 .experience-detail,
+.project-details,
 .education-information-cnt{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.certificate-name-cnt{
+.certificate-name-cnt,
+.project-name-cnt{
     display: flex;
     gap: 20px;
 }
-.issued-details{
+.issued-details,
+.created-details{
     font-size: 1rem;
     line-height: 2rem;
 }
-.view-certificate-btn{
+.view-certificate-btn,
+.view-project-btn{
     cursor: pointer;
     padding: 10px 20px;
     font-size: 1rem;
@@ -198,7 +265,8 @@
     background-color: transparent;
     border-radius: 30px;
 }
-.view-certificate-btn>i{
+.view-certificate-btn>i,
+.view-project-btn>i{
     margin-right: 10px;
 }
 .experience-detail-cnt,

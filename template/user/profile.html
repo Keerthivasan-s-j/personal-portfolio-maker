@@ -20,13 +20,18 @@
         </div>
         <div class="user-identity-cnt">
             <div class="name-cnt">
-                <h1 class="name">Keerthivasan S J</h1>
+                <h1 class="name">Keerthivasan S J <span class="pronouns">(He/Him)</span></h1>
                 <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
             </div>
+            <h3 class="uname"><i class="fa-regular fa-id-badge"></i> {{uname}}</h3>
+            <p class="dob"><i class="fa-solid fa-cake-candles"></i> 16/12/2004</p>
             <div class="location">
                 <p><i class="fa-solid fa-location-dot"></i> Trichy, India</p>
             </div>
-            <button type="button" class="resume"><i class="fa-solid fa-file"></i> Resume</button>
+            <div class="btn-cnt">
+                <span class="open-to-work"><i class="fa-solid fa-briefcase"></i> Open to Work</span>
+                <button type="button" class="resume"><i class="fa-solid fa-download"></i> Resume</button>
+            </div>
         </div>
     </div>
     <div class="share-cnt">
@@ -50,7 +55,7 @@
 <!-- Experience -->
 <div class="experiences-cnt">
     <div class="experiences-title-cnt">
-        <h1 class="experiences-title">Experirence</h1>
+        <h1 class="experiences-title">Experirence <i class="fa-solid fa-briefcase"></i></h1>
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
@@ -77,7 +82,7 @@
 <!-- Education -->
 <div class="education-cnt">
     <div class="education-title-cnt">
-        <h1 class="education-title">Education</h1>
+        <h1 class="education-title">Education <i class="fa-solid fa-graduation-cap"></i></h1>
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
@@ -127,12 +132,13 @@
 <!-- Certificates -->
 <div class="certifications-cnt">
     <div class="certification-title-cnt">
-        <h1 class="certification-title">Certifications</h1>
+        <h1 class="certification-title">Certifications <i class="fa-solid fa-award"></i></h1>
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
     </div>
     <div class="certificate-list">
+        <!--  -->
         <div class="certificate">
             <div class="certificate-provier-logo-cnt">
                 <img src="{% static 'images/icons/certificateicon.png' %}" alt="" class="certificate-provier-logo" width="100px">
@@ -156,6 +162,7 @@
                 </div>
             </div>
         </div>
+        <!--  -->
         <div class="certificate">
             <div class="certificate-provier-logo-cnt">
                 <img src="{% static 'images/icons/certificateicon.png' %}" alt="" class="certificate-provier-logo" width="100px">
@@ -179,20 +186,54 @@
                 </div>
             </div>
         </div>
+        <!--  -->
+    </div>
+</div>
+<!-- Projects -->
+<div class="project-cnt">
+    <div class="project-title-cnt">
+        <h1 class="project-title">Projects <i class="fa-solid fa-gear"></i></h1>
+        <div class="add-btn">
+            <i class="fa-regular fa-square-plus"></i>
+        </div>
+    </div>
+    <div class="project-list">
+        <div class="project">
+            <div class="project-image-cnt">
+                <img src="{% static 'images/icons/projecticon.png' %}" alt="" class="project-provier-logo" width="100px">
+            </div>
+            <div class="project-details-cnt">
+                <div class="project-details">
+                    <div class="project-name-cnt">
+                        <h2 class="project-name">GPA Calculator</h2>
+                        <div class="edit-cnt">
+                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                        </div>
+                    </div>
+                    <div class="created-details">
+                        <p class="created-on">July 2024 - August 2024</p>
+                    </div>
+                    <button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button>
+                </div>
+                <div class="delete-btn">
+                    <i class="fa-regular fa-trash-can"></i>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Skills -->
 <div class="profile-skills-cnt">
     <div class="profile-skills-title-cnt">
-        <h1 class="profile-skills-title">Skills</h1>
+        <h1 class="profile-skills-title">Skills <i class="fa-solid fa-person-snowboarding"></i></h1>
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
     </div>
     <div class="profle-skills-list">
-        <span class="skills">Django</span>
-        <span class="skills">Html</span>
-        <span class="skills">CSS</span>
+        <span class="skills intermediate">Django</span>
+        <span class="skills expert">Html</span>
+        <span class="skills beginner">CSS</span>
         <span class="skills">Java</span>
         <span class="skills">JavaScript</span>
         <span class="skills">Python</span>
@@ -207,14 +248,14 @@
 <!-- Languages Known -->
 <div class="languages-known-cnt">
     <div class="languages-known-title-cnt">
-        <h1 class="languages-known-title">Languages Known</h1>
+        <h1 class="languages-known-title">Languages Known <i class="fa-solid fa-earth-asia"></i></h1>
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
     </div>
     <div class="languages-known-list">
-        <span class="languages">Tamil</span>
-        <span class="languages">English</span>
+        <span class="languages intermediate">Tamil</span>
+        <span class="languages intermediate">English</span>
     </div>
 </div>
 {% endblock %}

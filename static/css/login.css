@@ -15,6 +15,7 @@ body{
 }
 .main-cnt{
     display: flex;
+    height: 80vh;
     justify-content: center;
     align-items: center;
 }
@@ -37,14 +38,14 @@ body{
 .input-box>i{
     font-size: 1rem;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    left: 15px;
+    top: 15px;
     vertical-align: middle;
 }
 .input-box>input{
     font-size: 1rem;
     line-height: 2rem;
-    padding: 0 20px 0 35px;
+    padding: 5px 20px 5px 35px;
     border: 2px solid #bebebe;
     border-radius: 3px;
     transition: all 0.2s ease;
@@ -68,14 +69,23 @@ body{
     text-decoration: none;
     color: rgb(37, 149, 224);
 }
+.submit-cnt{
+    width: 100%;
+}
 .signup-btn,
 .signin-btn{
-    padding: 11px 21px;
+    padding: 14px 21px;
     border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
     color: white;
     border: none;
-    width: 150px;
+    width: 100%;
     background-color: rgb(37, 149, 224);
 }
+.error{
+    color: red;
+}
+
 
 /* Style for Sign In */

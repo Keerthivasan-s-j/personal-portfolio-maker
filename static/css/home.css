@@ -16,7 +16,7 @@
     font-family: Nunito Sans;
 }
 .nav-bar{
-    padding: 10px 2rem;
+    padding: 20px 2rem;
     box-shadow: 1px 0px 5px #ccc;
 }
 .nav-links,
@@ -49,7 +49,7 @@
 .search{
     padding: 10px;
     border: 1px solid #ccc;
-    font-size: 13.5px;
+    font-size: 13px;
     border-radius: 4px 0 0 4px;
     border-right: 0;
     transition: all 0.3s ease;
@@ -120,7 +120,7 @@
     padding: 30px;
     margin: 30px;
     border-radius: 10px;
-    color: white;
+    color: #ccc;
     background-color: #333;
 }
 .footer-cols{
@@ -131,6 +131,7 @@
     grid-template-columns: repeat(3, 1fr);
 }
 .title{
+    color: white;
     margin-bottom: 20px;
 }
 .about-details,
@@ -146,7 +147,7 @@
 }
 .footer-nav-link{
     width: 100px;
-    color: white;
+    color: #ccc;
     text-decoration: none;
     transition: all 0.2s ease;
 }
@@ -182,6 +183,7 @@
 .footer-logo{
     display: flex;
     position: absolute;
+    color: white;
     gap: 20px;
     bottom: 30px;
     right: 30px;
