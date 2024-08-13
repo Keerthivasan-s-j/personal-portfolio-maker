@@ -15,7 +15,7 @@ body{
 }
 .main-cnt{
     display: flex;
-    height: 80vh;
+    padding: 30px;
     justify-content: center;
     align-items: center;
 }
@@ -28,7 +28,7 @@ body{
     align-items: center;
 }
 .form-cnt{
-    padding: 40px 80px;
+    padding: 40px 30px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
@@ -45,6 +45,7 @@ body{
 .input-box>input{
     font-size: 1rem;
     line-height: 2rem;
+    width: 300px;
     padding: 5px 20px 5px 35px;
     border: 2px solid #bebebe;
     border-radius: 3px;
@@ -86,6 +87,8 @@ body{
 .error{
     color: red;
 }
-
+.invalid-credential-error-cnt{
+    width: 100%;
+}
 
 /* Style for Sign In */

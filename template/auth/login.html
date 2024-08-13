@@ -31,12 +31,16 @@
                 <div class="input-box">
                     <input type="text" name="uname_or_email" id="uname_or_email" placeholder="Username or Email">
                     <i class="fa-solid fa-user"></i>
-                    <!-- <div class="error">Username or Email required</div> -->
+                    <div id="uname_or_email_error" class="error"></div>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" id="password" placeholder="Password">
                     <i class="fa-solid fa-lock"></i>
+                    <div id="password_error" class="error"></div>
                 </div>
+            </div>
+            <div class="invalid-credential-error-cnt">
+                <div class="error"><!-- User does not exist --></div>
             </div>
             <div class="form-links-cnt">
                 <div class="form-links">
@@ -54,5 +58,7 @@
         </form>
         {% endblock %}
     </main>
+    <!-- Script file -->
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>
