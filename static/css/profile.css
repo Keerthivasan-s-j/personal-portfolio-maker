@@ -165,7 +165,7 @@
 .languages-known-list{
     display: flex;
     flex-wrap: wrap;
-    padding: 30px 0 0 0;
+    padding: 30px 0;
     border-top: 1px solid #ccc;
 }
 .skills,
@@ -179,7 +179,7 @@
     border-radius: 1rem;
 }
 /* profeciancy level */
-/* .beginner{
+.beginner{
     background-color: #d1ffc0;
     color: #17B169;
 }
@@ -190,8 +190,32 @@
 .expert{
     background-color: #c0d1ff;
     color: #1738b1;
-} */
+}
 /*  */
+.profeciancy-level-cnt,
+.profeciancy-level{
+    display: flex;
+    gap: 10px;
+}
+.profeciancy-level-cnt{
+    flex-wrap: wrap;
+    padding: 20px 0;
+}
+.circle{
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+}
+.intermediate-level{
+    background-color: #ffebc0;
+}
+.beginner-level{
+    background-color: #d1ffc0;
+}
+.expert-level{
+    background-color: #c0d1ff;
+}
 .certificate,
 .project{
     display: flex;
