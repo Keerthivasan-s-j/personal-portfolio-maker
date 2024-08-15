@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
+}
 /* Navbar style */
 .nav-bar,
 .logo-cnt,
@@ -12,6 +15,7 @@
 .searchbar-profile-cnt{
     display: flex;
     justify-content: space-between;
+    background-color: white;
     align-items: center;
     font-family: Nunito Sans;
 }

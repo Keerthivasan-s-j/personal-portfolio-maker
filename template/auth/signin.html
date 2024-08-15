@@ -1,5 +1,7 @@
 {% extends './login.html' %}
 
+{% load static %}
+
 {% block main %}
 <form action="" class="form-cnt" method="post">
     {% csrf_token %}
@@ -8,24 +10,29 @@
     </div>
     <div class="input-cnt">
         <div class="input-box">
-            <input type="text" name="uname_or_email" id="uname_or_email" placeholder="Username or Email">
+            <input type="text" name="email" id="email" placeholder="Enter your Email">
             <i class="fa-regular fa-user"></i>
+            <div id="email_error" class="error"></div>
         </div>
         <div class="input-box">
             <input type="text" name="fname" id="fname" placeholder="First Name">
             <i class="fa-solid fa-user-tie"></i>
+            <div id="fname_error" class="error"></div>
         </div>
         <div class="input-box">
             <input type="text" name="lname" id="lname" placeholder="Last Name">
             <i class="fa-solid fa-user"></i>
+            <div id="lname_error" class="error"></div>
         </div>
         <div class="input-box">
             <input type="password" name="password" id="password" placeholder="Password">
             <i class="fa-solid fa-lock"></i>
+            <div id="password_error" class="error"></div>
         </div>
         <div class="input-box">
-            <input type="password" name="password" id="conform_password" placeholder="Conform Password">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
             <i class="fa-solid fa-check"></i>
+            <div id="confirm_password_error" class="error"></div>
         </div>
     </div>
     <div class="form-links-cnt">
@@ -39,4 +46,9 @@
         <input type="submit" value="Sign In" class="signup signin-btn">
     </div>
 </form>
+{% endblock %}
+
+{% block script %}
+<!-- Script file -->
+<script src="{% static 'js/signin.js' %}"></script>
 {% endblock %}
