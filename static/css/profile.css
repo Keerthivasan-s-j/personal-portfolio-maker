@@ -39,6 +39,11 @@
     vertical-align: middle;
     cursor: pointer;
 }
+.edit-btn:hover{
+    color: #fff;
+    background-color: #5170d7;
+    transition: all .5s ease;
+}
 .profile-photo-cnt{
     height: 300px;
     width: 300px;
@@ -95,9 +100,16 @@
     color: green;
 }
 .resume{
-    background-color: #0039e3;
-    color: whitesmoke;
+    background-color: #5e84f8;
+    border-radius: 10px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #fff;
     cursor: pointer;
+    transition: all .4s ease;
+}
+.resume:hover{
+    background-color: #5170d7;
 }
 .uname>i,
 .dob>i,
@@ -280,11 +292,17 @@
     border: 2px solid #5170d7;
     background-color: transparent;
     border-radius: 30px;
+    transition: all .5s ease;
 }
 .view-certificate-btn>i,
 .view-project-btn>i{
     margin-right: 10px;
+}.view-certificate-btn:hover,
+.view-project-btn:hover{
+    color: #fff;
+    background-color: #5170d7;
 }
+
 .experience-detail-cnt,
 .education-detail-cnt{
     display: flex;
