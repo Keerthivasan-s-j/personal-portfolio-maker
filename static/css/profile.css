@@ -162,7 +162,7 @@
 }
 .profile-about-me{
     text-align: justify;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 2rem;
 }
 .profle-skills-list,
@@ -271,15 +271,37 @@
     flex-direction: column;
     gap: 10px;
 }
+.degree{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+.grade{
+    background-color: #d1ffc0;
+    color: #17B169;
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: fit-content;
+    border-radius: 30px;
+    font-weight: normal;
+}
 .certificate-name-cnt,
 .project-name-cnt{
     display: flex;
     gap: 20px;
 }
 .issued-details,
-.created-details{
+.created-details,
+.certificate-description,
+.experience-description{
     font-size: 1rem;
     line-height: 2rem;
+}
+.certificate-description,
+.experience-description{
+    text-align: justify;
+    font-size: 18px;
 }
 .view-certificate-btn,
 .view-project-btn{
