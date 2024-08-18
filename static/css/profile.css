@@ -6,7 +6,8 @@
 .experiences-cnt,
 .education-cnt,
 .languages-known-cnt,
-.project-cnt{
+.project-cnt,
+.testimonials-cnt{
     display: flex;
     padding: 40px;
     border-radius: 20px;
@@ -139,7 +140,8 @@
 .certifications-cnt,
 .experiences-cnt,
 .languages-known-cnt,
-.project-cnt{
+.project-cnt,
+.testimonials-cnt{
     position: relative;
     flex-direction: column;
 }
@@ -147,7 +149,8 @@
 .institution-name-cnt,
 .profile-skills-title-cnt,
 .job-role-cnt,
-.languages-known-title-cnt{
+.languages-known-title-cnt,
+.testimonials-title-cnt{
     display: flex;
     gap: 20px;
 }
@@ -157,7 +160,8 @@
 .certification-title,
 .experiences-title,
 .languages-known-title,
-.project-title{
+.project-title,
+.testimonials-title{
     margin-bottom: 1rem;
 }
 .profile-about-me{
@@ -253,7 +257,9 @@
 .experiences-title-cnt,
 .project-title-cnt,
 .profile-skills-title-cnt,
-.languages-known-title-cnt{
+.languages-known-title-cnt,
+.testimonials-title-cnt{
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -331,4 +337,21 @@
     justify-content: space-between;
     border-top: 1px solid #ccc;
     padding: 40px 0;
+}
+.comments-cnt{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+    border-top: 1px solid #ccc;
+}
+.comments{
+    background-color: #ccc;
+    padding: 1rem;
+    border-radius: 20px;
+}
+.message{
+    font-size: 1rem;
+    color: #585858;
+    line-height: 2rem;
 }
