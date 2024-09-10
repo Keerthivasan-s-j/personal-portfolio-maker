@@ -178,8 +178,6 @@
 }
 .skills,
 .languages{
-    background-color: #f1f1f1;
-    color: gray;
     padding-inline: 14px;
     margin: 5px;
     font-size: 1rem;
@@ -346,7 +344,7 @@
     border-top: 1px solid #ccc;
 }
 .comments{
-    background-color: #ccc;
+    background-color: #f4f4f4;
     padding: 1rem;
     border-radius: 20px;
 }
