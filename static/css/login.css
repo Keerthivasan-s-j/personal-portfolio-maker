@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Capriola&family=Mochiy+Pop+P+One&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Neon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body{
+    background-color: whitesmoke;
     font-family: Nunito Sans;
 }
 .logo-cnt{
@@ -30,6 +32,7 @@ body{
 .form-cnt{
     padding: 40px 30px;
     border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 10px;
 }
 .input-box{
@@ -44,6 +47,7 @@ body{
 }
 .input-box>input{
     font-size: 1rem;
+    font-family: "M PLUS Rounded 1c", sans-serif;
     line-height: 2rem;
     width: 300px;
     padding: 5px 20px 5px 35px;
