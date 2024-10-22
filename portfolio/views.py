@@ -1,7 +1,31 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 def user_login(request):
+    if (request.method == "POST"):
+        uname_or_email = request.POST.get("uname_or_email")   
+        password = request.POST.get("password")
+        error_message = ""
+        if ("@" in uname_or_email):
+            user = authenticate(email = uname_or_email, password = password)
+        else:
+            user = authenticate(username = uname_or_email, password = password)
+        # the user variable contains the user name of the user if avilable else it contains None
+        if user is not None:
+            # this login() function is from the contrib.auth whick logins to the user
+            login(request, user)
+            return redirect(reverse("user_profile", kwargs={"uname" : user})) # keyword argument is used to send data requeired for the url
+        else:
+            error_message = "Invalid User name or Password"
+            return render(request, "auth/login.html", context={"error" : error_message})
     return render(request, "auth/login.html")
+
+@login_required(login_url='user_login')
+def user_logout(request):
+    logout(request)
+    return redirect(reverse("user_login"))
 
 def user_signin(request):
     return render(request, "auth/signin.html")

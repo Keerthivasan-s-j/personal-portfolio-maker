@@ -34,6 +34,7 @@ body{
     border: 1px solid #ccc;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: #ccc 10px 10px 40px;
 }
 .input-box{
     position: relative;
