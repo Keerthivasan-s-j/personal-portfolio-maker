@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.urls import reverse
 
 def user_login(request):
@@ -31,6 +32,11 @@ def user_signin(request):
     return render(request, "auth/signin.html")
 
 def home(request):
+    if(request.method == "POST"):
+        search = request.POST.get("search")
+        user = User.objects.filter(username = search)
+        if (user is not None):
+            return redirect(reverse("user_profile", kwargs={"uname" : search}))
     return render(request, "base/home.html")
 
 def user_profile(request, uname):
