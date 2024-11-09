@@ -34,11 +34,16 @@ def user_signin(request):
 def home(request):
     if(request.method == "POST"):
         search = request.POST.get("search")
-        user = User.objects.filter(username = search)
+        user = User.objects.filter(username = search).first()
         if (user is not None):
             return redirect(reverse("user_profile", kwargs={"uname" : search}))
     return render(request, "base/home.html")
 
 def user_profile(request, uname):
+    if(request.method == "POST"):
+        search = request.POST.get("search")
+        user = User.objects.filter(username = search).first()
+        if (user is not None):
+            return redirect(reverse("user_profile", kwargs={"uname" : search}))
     return render(request, "user/profile.html", context={'uname':uname})
 # Create your views here.

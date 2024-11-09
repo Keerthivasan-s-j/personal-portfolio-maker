@@ -108,6 +108,12 @@ body{
 .user-profile-cnt{
     display: flex;
     align-items: center;
+    position: relative;
+    gap: 30px;
+}
+.notification>i{
+    font-size: 22px;
+    cursor: pointer;
 }
 .user-profile{
     height: 40px;
@@ -117,9 +123,39 @@ body{
     overflow: hidden;
     margin-right: 10px;
 }
+.dropdown-menu{
+    display: none;
+    flex-direction: column;
+    z-index: 10;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    overflow: hidden;
+    position: absolute;
+    min-width: 200px;
+    box-shadow: 10px 10px 40px #ccc;
+    top: 150%;
+    right: 0;
+}
+.user-profile-dropdown{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 .user-profile-photo{
     max-width: 100%;
     margin: auto;
+}
+.dropdown-menu-link{
+    text-decoration: none;
+    color: black;
+    padding: 12px 2rem;
+    transition: all .2s ease;
+}
+.dropdown-menu-link:hover{
+    background-color: #bfe1ff;
+}
+.dropdown-menu-link>i{
+    margin-right: 10px;
 }
 /* Main container */
 .main-cnt{
