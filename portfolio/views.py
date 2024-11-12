@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http.response import HttpResponse
 from django.urls import reverse
 
 def user_login(request):
@@ -45,5 +46,12 @@ def user_profile(request, uname):
         user = User.objects.filter(username = search).first()
         if (user is not None):
             return redirect(reverse("user_profile", kwargs={"uname" : search}))
-    return render(request, "user/profile.html", context={'uname':uname})
+    user = User.objects.filter(username = uname).first()
+    if (user is None):
+        return HttpResponse("Profile Not Found!")
+    else:
+        return render(request, "user/profile.html", context={'uname':uname})
+
+def personal_details_form(request):
+    return render(request, "forms/personal_details_form.html")
 # Create your views here.

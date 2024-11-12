@@ -1,0 +1,135 @@
+{% extends './base_form.html' %}
+
+{% load static %}
+
+{% block form %}
+<form class="form-cnt" method="post">
+    {% csrf_token %}
+    <div class="form-title">
+        <h1 class="title">Personal Details</h1>
+    </div>
+    <div class="form-components">
+        <section class="personal-info-cnt">
+            <div class="form-title">
+                <h2 class="title">Personal Info</h2>
+            </div>
+            <div class="name-input-cnt">
+                <div class="input-box">
+                    <label for="fname">First Name <span class="required">*</span></label>
+                    <input type="text" name="fname" id="fname" placeholder="First Name">
+                </div>
+                <div class="input-box">
+                    <label for="lname">Last Name <span class="required">*</span></label>
+                    <input type="text" name="lname" id="lname" placeholder="Last Name">
+                </div>
+                <div class="input-box">
+                    <label for="uname">User Name <span class="required">*</span></label>
+                    <input type="text" name="uname" id="uname" placeholder="User Name">
+                </div>
+            </div>
+            <div class="input-cnt">
+                <div class="input-box">
+                    <label for="dob">Date of Birth <span class="required">*</span></label>
+                    <input type="date" name="dob" id="dob">
+                </div>
+            </div>
+            <div class="input-cnt">
+                <div class="input-box">
+                    <label for="gender">Gender <span class="required">*</span></label>
+                    <div class="gender-list">
+                        <div class="option">
+                            <input type="radio" name="gender" id="male">
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="gender" id="female">
+                            <label for="female">Female</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" name="gender" id="other">
+                            <label for="other">Others</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="contact-details-cnt">
+            <div class="form-title">
+                <h2 class="title">Contact Details</h2>
+            </div>
+            <div class="input-cnt">
+                <div class="address-input-cnt">
+                    <div class="input-box">
+                        <label for="district">District <span class="required">*</span></label>
+                        <input type="text" name="district" id="district" placeholder="District">
+                    </div>
+                    <div class="input-box">
+                        <label for="state">State <span class="required">*</span></label>
+                        <input type="text" name="state" id="state" placeholder="State">
+                    </div>
+                    <div class="input-box">
+                        <label for="zip">Zip Code <span class="required">*</span></label>
+                        <input type="text" name="zip" id="zip" placeholder="ZIP Code">
+                    </div>
+                </div>
+            </div>
+            <div class="contact-input-cnt">
+                <div class="input-box">
+                    <label for="phoneno">Phone Number<span class="required">*</span></label>
+                    <input type="text" name="phoneno" id="phoneno" placeholder="Phone Number">
+                </div>
+                <div class="input-box">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" name="email" id="email" placeholder="example@gmail.com">
+                </div>
+            </div>
+        </section>
+        <section class="set-password-cnt">
+            <div class="form-title">
+                <h2 class="title">Set Your Password</h2>
+            </div>
+            <div class="password-input-cnt">
+                <div class="password-input-box input-box">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <!-- <small>Use at least 8 characters, including letters and numbers.</small> -->
+                    <div class="input-box-with-i">
+                        <input type="password" name="password" id="password" placeholder="Password">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <div id="password_error" class="error"></div>
+                </div>
+            </div>
+            <div class="password-input-cnt">
+                <div class="password-input-box input-box">
+                    <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+                    <div class="input-box-with-i">
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div id="confirm_password_error" class="error"></div>
+                </div>
+            </div>
+        </section>
+        <section class="social-links-cnt">
+            <div class="form-title">
+                <h2 class="title">Social Links</h2>
+            </div>
+            <div class="social-link-input-cnt">
+                <div class="social-link-input-box input-box">
+                    <label for="linkedin_link"><i class="fa-brands fa-linkedin"></i></label>
+                    <input type="text" name="linkedin_link" id="linkedin_link" placeholder="Linkedin Link">
+                </div>
+                <div class="social-link-input-box input-box">
+                    <label for="github_link"><i class="fa-brands fa-github"></i></label>
+                    <input type="text" name="github_link" id="github_link" placeholder="GitHub Link">
+                </div>
+                <div class="social-link-input-box input-box">
+                    <label for="instagram_link"><i class="fa-brands fa-instagram"></i></label>
+                    <input type="text" name="instagram_link" id="instagram_link" placeholder="Instagram Link">
+                </div>
+            </div>
+        </section>
+        <button type="submit" class="submit-btn">Submit</button>
+    </div>
+</form>
+{% endblock %}

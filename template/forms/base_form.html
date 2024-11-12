@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Loding Static Files -->
+    {% load static %}
+    <!-- Font Awsom Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/logo/logo.png' %}">
+    {% block stylesheet %}
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+    {% endblock %}
+    {% block title %}
+    <!-- Page Title -->
+    <title>Portfolio | Form</title>
+    {% endblock %}
+</head>
+<body>
+    <nav class="logo-cnt">
+        <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
+        <h1>Portfolio</h1>
+    </nav>
+    <main class="main-cnt">
+        {% block form %}
+        <form class="form-cnt"></form>
+        {% endblock %}
+    </main>
+</body>
+</html>
