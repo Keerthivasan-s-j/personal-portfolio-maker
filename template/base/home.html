@@ -52,13 +52,16 @@
                     </div>
                     <div class="user-profile-dropdown">
                         <div class="user-profile">
-                            <img src="{% static 'images/profile/profilepic.jpg' %}" alt="" class="user-profile-photo">
+                            <img src="{{ logged_user.profile_picture.url }}" alt="" class="user-profile-photo">
                         </div>
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                     <div class="dropdown-menu">
-                        <a class="dropdown-menu-link" href=""><i class="fa-solid fa-gear"></i> Settings</a>
                         <a class="dropdown-menu-link" href="{% url 'user_profile' user.username %}"><i class="fa-solid fa-user"></i> Profile</a>
+                        {% if user.is_staff %}
+                        <a class="dropdown-menu-link" href="{% url 'admin:index' %}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                        {% endif %}
+                        <a class="dropdown-menu-link" href=""><i class="fa-solid fa-gear"></i> Settings</a>
                         <a class="dropdown-menu-link" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>
                 </div> 

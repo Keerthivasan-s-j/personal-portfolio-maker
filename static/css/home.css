@@ -119,8 +119,12 @@ body{
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    border: 1px solid #ccc;
+    border: 1px solid #5170d7;
     overflow: hidden;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-right: 10px;
 }
 .dropdown-menu{

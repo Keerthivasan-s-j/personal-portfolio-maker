@@ -12,9 +12,9 @@
     <div class="profile-cnt">
         <div class="profile">
             <div class="profile-photo-cnt">
-                <img src="{% static 'images/profile/profilepic.jpg' %}" alt="" class="profile-photo">
+                <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-photo">
             </div>
-            {% if user.is_authenticated %}
+            {% if edit_access %}
             <div class="edit-cnt">
                 <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
             </div>
@@ -22,19 +22,21 @@
         </div>
         <div class="user-identity-cnt">
             <div class="name-cnt">
-                <h1 class="name">Keerthivasan S J <span class="pronouns">(He/Him)</span></h1>
-                {% if user.is_authenticated %}
+                <h1 class="name">{{ user_profile.name }} <span class="pronouns">({{ user_profile.pronouns }})</span></h1>
+                {% if edit_access %}
                 <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
                 {% endif %}
             </div>
-            <h3 class="uname"><i class="fa-regular fa-id-badge"></i> {{uname}}</h3>
-            <p class="dob"><i class="fa-solid fa-cake-candles"></i> 16/12/2004</p>
+            <h3 class="uname"><i class="fa-regular fa-id-badge"></i> {{ user_profile.user.username }}</h3>
+            <p class="dob"><i class="fa-solid fa-cake-candles"></i> {{ user_profile.dob }}</p>
             <div class="location">
-                <p><i class="fa-solid fa-location-dot"></i> Trichy, India</p>
+                <p><i class="fa-solid fa-location-dot"></i> {{ user_profile.district }}</p>
             </div>
             <div class="btn-cnt">
+                {% if user_profile.open_to_work %}
                 <span class="open-to-work"><i class="fa-solid fa-briefcase"></i> Open to Work</span>
-                <button type="button" class="resume"><i class="fa-solid fa-file"></i> Resume</button>
+                {% endif %}
+                <a href="{{ user_profile.resume.url }}" download="Resume.pdf"><button type="button" class="resume"><i class="fa-solid fa-file"></i> Resume</button></a>
             </div>
         </div>
     </div>
@@ -42,11 +44,13 @@
         <button type="button" class="share-btn">Share <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
     </div>
 </div>
+
 <!-- About -->
+ {% if user_about %}
 <div class="profile-about-cnt">
     <div class="profile-about-title-cnt">
-        <h1 class="profile-about-title">Expert Web Designer with Django experience</h1>
-        {% if user.is_authenticated %}
+        <h1 class="profile-about-title">{{ user_about.title }}</h1>
+        {% if edit_access %}
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
@@ -54,15 +58,18 @@
     </div>
     <div class="profle-about-me-cnt">
         <p class="profile-about-me">
-            Hello! I'm Keerthivasan S J, a passionate Python programmer and web developer. I thrive on turning complex problems into simple, beautiful solutions. With a solid foundation in Python and hands-on experience from my web development internship, I'm eager to bring my skills to real-world projects. Let's collaborate to create something amazing!
+            {{ user_about.about_me }}
         </p>
     </div>
 </div>
+{% endif %}
+
 <!-- Experience -->
+{% if user_experience %}
 <div class="experiences-cnt">
     <div class="experiences-title-cnt">
         <h1 class="experiences-title">Experience <i class="fa-solid fa-briefcase"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
@@ -70,35 +77,40 @@
     </div>
     <div class="experiences-list">
         <!--  -->
+        {% for experience in user_experience %}
         <div class="experience-detail-cnt">
             <div class="experience-detail">
                 <div class="job-role-cnt">
-                    <h2 class="job-role">Web Developer Intern | JSW Steel</h2>
-                    {% if user.is_authenticated %}
+                    <h2 class="job-role">{{ experience.title }} | {{ experience.company }}</h2>
+                    {% if edit_access %}
                     <div class="edit-cnt">
                         <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
                     </div>
                     {% endif %}
                 </div>
-                <div class="duration">July 2024 - July 2024</div>
+                <div class="duration">{{ experience.start_date }} - {{ experience.end_date }}</div>
                 <div class="experience-description-cnt">
-                    <p class="experience-description">Developed a full-stack Flipkart clone during my internship at JSW Steel Salem. Used Django for the backend and HTML, CSS, and JavaScript for the frontend, with cart functionality (payment gateway not included).</p>
+                    <p class="experience-description">{{ experience.description }}</p>
                 </div>
             </div>
-            {% if user.is_authenticated %}
+            {% if edit_access %}
             <div class="delete-btn">
                 <i class="fa-regular fa-trash-can"></i>
             </div>
             {% endif %}
         </div>
+        {% endfor %}
         <!--  -->
     </div>
 </div>
+{% endif %}
+
 <!-- Education -->
+{% if user_educations %}
 <div class="education-cnt">
     <div class="education-title-cnt">
         <h1 class="education-title">Education <i class="fa-solid fa-graduation-cap"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
@@ -106,59 +118,40 @@
     </div>
     <div class="education-list">
         <!--  -->
+        {% for education in user_educations %}
         <div class="education-detail-cnt">
             <div class="education-detail">
                 <div class="education-information-cnt">
                     <div class="institution-name-cnt">
-                        <h2 class="institution-name">K Ramakrishnan College of Technology</h2>
-                        {% if user.is_authenticated %}
+                        <h2 class="institution-name">{{ education.school_name }}</h2>
+                        {% if edit_access %}
                         <div class="edit-cnt">
                             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
                         </div>
                         {% endif %}
                     </div>
-                    <h4 class="degree">Bachelor of Engineering (BEng) <span class="grade">Grade : 8.6 CGPA</span></h4>
-                    <p class="area-of-study">Computer Science</p>
-                    <p class="duration">July 2022 - May 2026</p>
+                    <h4 class="degree">{{ education.degree }} <span class="grade">Grade : {{ education.grade }}</span></h4>
+                    <p class="area-of-study">{{ education.course }}</p>
+                    <p class="duration">{{ education.start_date }} - {{ education.end_date }}</p>
                 </div>
             </div>
-            {% if user.is_authenticated %}
+            {% if edit_access %}
             <div class="delete-btn">
                 <i class="fa-regular fa-trash-can"></i>
             </div>
             {% endif %}
         </div>
-        <!--  -->
-        <div class="education-detail-cnt">
-            <div class="education-detail">
-                <div class="education-information-cnt">
-                    <div class="institution-name-cnt">
-                        <h2 class="institution-name">Malco Vidhyalaya Matric Hir Sec School</h2>
-                        {% if user.is_authenticated %}
-                        <div class="edit-cnt">
-                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <h4 class="degree">Higher Secondary School Certificate <span class="grade">Grade : 85%</span></h4>
-                    <p class="area-of-study">Maths-Computer Science</p>
-                    <p class="duration">July 2021 - May 2022</p>
-                </div>
-            </div>
-            {% if user.is_authenticated %}
-            <div class="delete-btn">
-                <i class="fa-regular fa-trash-can"></i>
-            </div>
-            {% endif %}
-        </div>
-        <!--  -->
+        {% endfor %}
     </div>
 </div>
+{% endif %}
+
 <!-- Certificates -->
+{% if user_certificates %}
 <div class="certifications-cnt">
     <div class="certification-title-cnt">
         <h1 class="certification-title">Certifications <i class="fa-solid fa-award"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
@@ -166,6 +159,7 @@
     </div>
     <div class="certificate-list">
         <!--  -->
+        {% for certificate in user_certificates %}
         <div class="certificate">
             <div class="certificate-provier-logo-cnt">
                 <img src="{% static 'images/icons/certificateicon.png' %}" alt="" class="certificate-provier-logo" width="100px">
@@ -173,68 +167,45 @@
             <div class="certificate-details-cnt">
                 <div class="certificate-details">
                     <div class="certificate-name-cnt">
-                        <h2 class="certificate-name">Programming, Data Structures and Algorithms using Python</h2>
-                        {% if user.is_authenticated %}
+                        <h2 class="certificate-name">{{ certificate.title }}</h2>
+                        {% if edit_access %}
                         <div class="edit-cnt">
                             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
                         </div>
                         {% endif %}
                     </div>
                     <div class="issued-details">
-                        <h4 class="issued-by">Issued By: NPTEL</h4>
-                        <p class="issued-by">Issued On: April 2024</p>
+                        <h4 class="issued-by">Issued By: {{ certificate.issued_by }}</h4>
+                        <p class="issued-by">Issued On: {{ certificate.issued_on }}</p>
                     </div>
-                    <button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button>
+                    <a href="{{ certificate.certificate_url }}"><button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button></a>
                 </div>
-                {% if user.is_authenticated %}
+                {% if edit_access %}
                 <div class="delete-btn">
                     <i class="fa-regular fa-trash-can"></i>
                 </div>
                 {% endif %}
             </div>
         </div>
-        <!--  -->
-        <div class="certificate">
-            <div class="certificate-provier-logo-cnt">
-                <img src="{% static 'images/icons/certificateicon.png' %}" alt="" class="certificate-provier-logo" width="100px">
-            </div>
-            <div class="certificate-details-cnt">
-                <div class="certificate-details">
-                    <div class="certificate-name-cnt">
-                        <h2 class="certificate-name">Joy of Computing Using Python</h2>
-                        {% if user.is_authenticated %}
-                        <div class="edit-cnt">
-                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="issued-details">
-                        <h4 class="issued-by">Issued By: NPTEL</h4>
-                        <p class="issued-by">Issued On: November 2023</p>
-                    </div>
-                    <button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button>
-                </div>
-                {% if user.is_authenticated %}
-                <div class="delete-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                </div>
-                {% endif %}
-            </div>
-        </div>
+        {% endfor %}
         <!--  -->
     </div>
 </div>
+{% endif %}
+
 <!-- Projects -->
+ {% if user_projects %}
 <div class="project-cnt">
     <div class="project-title-cnt">
         <h1 class="project-title">Projects <i class="fa-solid fa-gear"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="add-btn">
             <i class="fa-regular fa-square-plus"></i>
         </div>
         {% endif %}
     </div>
     <div class="project-list">
+        {% for project in user_projects %}
         <div class="project">
             <div class="project-image-cnt">
                 <img src="{% static 'images/icons/projecticon.png' %}" alt="" class="project-provier-logo" width="100px">
@@ -242,53 +213,48 @@
             <div class="project-details-cnt">
                 <div class="project-details">
                     <div class="project-name-cnt">
-                        <h2 class="project-name">GPA Calculator</h2>
-                        {% if user.is_authenticated %}
+                        <h2 class="project-name">{{ project.title }}</h2>
+                        {% if edit_access %}
                         <div class="edit-cnt">
                             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
                         </div>
                         {% endif %}
                     </div>
                     <div class="created-details">
-                        <p class="created-on">July 2024 - August 2024</p>
+                        <p class="created-on">{{ project.start_date }} - {{ project.end_date }}</p>
                     </div>
                     <div class="certificate-description-cnt">
-                        <p class="certificate-description">I developed a sleek GPA Calculator using the Streamlit framework in Python. This application provides a user-friendly interface for quick and precise GPA calculations, featuring real-time data visualization and effortless data input.</p>
+                        <p class="certificate-description">{{ project.description }}</p>
                     </div>
-                    <button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button>
+                    <a href="{{ project.project_url }}"><button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button></a>
                 </div>
-                {% if user.is_authenticated %}
+                {% if edit_access %}
                 <div class="delete-btn">
                     <i class="fa-regular fa-trash-can"></i>
                 </div>
                 {% endif %}
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
+{% endif %}
+
 <!-- Skills -->
+ {% if user_skills %}
 <div class="profile-skills-cnt">
     <div class="profile-skills-title-cnt">
         <h1 class="profile-skills-title">Skills <i class="fa-solid fa-person-snowboarding"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
         {% endif %}
     </div>
     <div class="profle-skills-list">
-        <span class="skills intermediate">Django</span>
-        <span class="skills expert">Html</span>
-        <span class="skills beginner">CSS</span>
-        <span class="skills intermediate">Java</span>
-        <span class="skills intermediate">JavaScript</span>
-        <span class="skills expert">Python</span>
-        <span class="skills beginner">SQL</span>
-        <span class="skills beginner">MySQL</span>
-        <span class="skills beginner">C</span>
-        <span class="skills beginner">Git</span>
-        <span class="skills beginner">GitHub</span>
-        <span class="skills intermediate">Problem Solving</span>
+        {% for skill in user_skills %}
+        <span class="skills {{ skill.proficiency.lower }}">{{ skill.skill }}</span>
+        {% endfor %}
     </div>
     <div class="profeciancy-level-cnt">
         <div class="profeciancy-level">
@@ -305,19 +271,23 @@
         </div>
     </div>
 </div>
+{% endif %}
+
 <!-- Languages Known -->
+ {% if user_languages %}
 <div class="languages-known-cnt">
     <div class="languages-known-title-cnt">
         <h1 class="languages-known-title">Languages Known <i class="fa-solid fa-earth-asia"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
         {% endif %}
     </div>
     <div class="languages-known-list">
-        <span class="languages expert">Tamil</span>
-        <span class="languages intermediate">English</span>
+        {% for language in user_languages %}
+        <span class="languages {{ language.proficiency.lower }}">{{ language.language }}</span>
+        {% endfor %}
     </div>
     <div class="profeciancy-level-cnt">
         <div class="profeciancy-level">
@@ -334,10 +304,13 @@
         </div>
     </div>
 </div>
+{% endif %}
+
+<!-- Testimonials -->
 <div class="testimonials-cnt">
     <div class="testimonials-title-cnt">
         <h1 class="testimonials-title">Testimonials <i class="fa-solid fa-comment-dots"></i></h1>
-        {% if user.is_authenticated %}
+        {% if edit_access %}
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>

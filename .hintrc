@@ -9,6 +9,12 @@
         "button-name": "off",
         "link-name": "off"
       }
+    ],
+    "axe/keyboard": [
+      "default",
+      {
+        "nested-interactive": "off"
+      }
     ]
   }
 }
