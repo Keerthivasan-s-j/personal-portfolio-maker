@@ -244,6 +244,8 @@
     cursor: pointer;
 }
 .delete-btn{
+    background-color: transparent;
+    border: none;
     color: #ff6b6b;
     font-size: 25px;
     cursor: pointer;

@@ -94,9 +94,12 @@
                 </div>
             </div>
             {% if edit_access %}
-            <div class="delete-btn">
-                <i class="fa-regular fa-trash-can"></i>
-            </div>
+            <form class="del_form" action="{% url 'del_user_experienc' experience.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+            </form>
             {% endif %}
         </div>
         {% endfor %}
@@ -136,9 +139,12 @@
                 </div>
             </div>
             {% if edit_access %}
-            <div class="delete-btn">
-                <i class="fa-regular fa-trash-can"></i>
-            </div>
+            <form class="del_form" action="{% url 'del_user_education' education.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+            </form>
             {% endif %}
         </div>
         {% endfor %}
@@ -181,9 +187,12 @@
                     <a href="{{ certificate.certificate_url }}"><button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button></a>
                 </div>
                 {% if edit_access %}
-                <div class="delete-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                </div>
+                <form class="del_form" action="{% url 'del_user_certificate' certificate.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </form>
                 {% endif %}
             </div>
         </div>
@@ -229,9 +238,12 @@
                     <a href="{{ project.project_url }}"><button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button></a>
                 </div>
                 {% if edit_access %}
-                <div class="delete-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                </div>
+                <form class="del_form" action="{% url 'del_user_project' project.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </button>
+                </form>
                 {% endif %}
             </div>
         </div>

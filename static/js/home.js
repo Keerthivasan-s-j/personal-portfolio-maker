@@ -13,4 +13,14 @@ document.addEventListener("DOMContentLoaded", function() {
             dropDownIcon.classList.replace("fa-chevron-up", "fa-chevron-down");
         }
     }
+
+    // Confermation for delete operation
+    document.querySelectorAll(".del_form").forEach(form => {
+        form.addEventListener("submit", function(event){
+            user_conf = confirm("Are you sure you want to delete this?");
+            if (!user_conf){
+                event.preventDefault();
+            }
+        });
+    });
 });

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import HttpResponse
 from django.urls import reverse
+from django.contrib import messages
 from .models import *
 
 def user_login(request):
@@ -93,4 +94,32 @@ def user_profile(request, uname):
 
 def personal_details_form(request):
     return render(request, "forms/personal_details_form.html")
+
+@login_required(login_url='user_login')
+def del_user_experienc(request,id):
+    if request.method == "POST":
+        experience = get_object_or_404(Experience, id = id)
+        experience.delete()
+    return redirect(reverse('user_profile', kwargs={"uname" : request.user.username}))
+
+@login_required(login_url='user_login')
+def del_user_education(request,id):
+    if request.method == "POST":
+        education = get_object_or_404(Education, id = id)
+        education.delete()
+    return redirect(reverse('user_profile', kwargs={"uname" : request.user.username}))
+
+@login_required(login_url='user_login')
+def del_user_certificate(request,id):
+    if request.method == "POST":
+        certificate = get_object_or_404(Certificate, id = id)
+        certificate.delete()
+    return redirect(reverse('user_profile', kwargs={"uname" : request.user.username}))
+
+@login_required(login_url='user_login')
+def del_user_project(request,id):
+    if request.method == "POST":
+        project = get_object_or_404(Project, id = id)
+        project.delete()
+    return redirect(reverse('user_profile', kwargs={"uname" : request.user.username}))
 # Create your views here.
