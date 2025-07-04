@@ -99,7 +99,7 @@
                     <h1>Build Your Personal Brand</h1>
                     <p>Create your professional portfolio in minutes. Highlight your skills, projects, experience, and more.</p>
                     {% if not user.is_authenticated %}
-                    <a href="{% url 'user_signin' %}">
+                    <a href="{% url 'user_signup' %}">
                         <button class="get-started-btn">Get Started for Free</button>
                     </a>
                     {% else %}
