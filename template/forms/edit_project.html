@@ -1,0 +1,33 @@
+{% extends './base_form.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit Project</h2>
+    <form action="{% url 'edit_project' project.id %}" method="POST">
+        {% csrf_token %}
+
+        <label for="title">Project Title</label>
+        <input type="text" id="title" name="title" value="{{ project.title }}" placeholder="e.g., Dynamic Portfolio" required>
+
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date" name="start_date" value="{{ project.start_date|date:'Y-m-d' }}" required>
+
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date" name="end_date" value="{{ project.end_date|date:'Y-m-d' }}">
+
+        <label for="description">Project Description</label>
+        <textarea id="description" name="description" rows="5" placeholder="Describe your project..." required>{{ project.description }}</textarea>
+
+        <label for="project_url">Project URL</label>
+        <input type="url" id="project_url" name="project_url" value="{{ project.project_url }}" placeholder="e.g., https://github.com/yourrepo/project">
+
+        <button type="submit">Update Project</button>
+    </form>
+</div>
+{% endblock %}

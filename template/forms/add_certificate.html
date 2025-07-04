@@ -1,0 +1,30 @@
+{% extends './base_form.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Add Certificate</h2>
+    <form action="{% url 'add_certificate' %}" method="POST">
+        {% csrf_token %}
+
+        <label for="title">Certificate Title</label>
+        <input type="text" id="title" name="title" placeholder="e.g., Joy of Computing Using Python" required>
+
+        <label for="issued_by">Issued By</label>
+        <input type="text" id="issued_by" name="issued_by" placeholder="e.g., NPTEL" required>
+
+        <label for="issued_on">Issued On</label>
+        <input type="date" id="issued_on" name="issued_on" required>
+
+        <label for="certificate_url">Certificate URL</label>
+        <input type="url" id="certificate_url" name="certificate_url" placeholder="e.g., https://example.com/view">
+
+        <button type="submit">Add Certificate</button>
+    </form>
+</div>
+{% endblock %}

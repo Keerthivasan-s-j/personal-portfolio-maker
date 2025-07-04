@@ -16,48 +16,53 @@
     <title>Portfolio | Login</title>
 </head>
 <body>
-    <nav class="logo-cnt">
-        <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
-        <h1>Portfolio</h1>
-    </nav>
-    <main class="main-cnt">
-        {% block main %}
-        <form action="" class="form-cnt" method="post">
-            {% csrf_token %}
-            <div class="form-title">
-                <h1 class="title">Sign In</h1>
-            </div>
-            <div class="input-cnt">
-                <div class="input-box">
-                    <input type="text" name="uname_or_email" id="uname_or_email" placeholder="Username">
-                    <i class="fa-solid fa-user"></i>
-                    <div id="uname_or_email_error" class="error"></div>
+    <div class="container">
+        <nav class="logo-cnt">
+            <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
+            <h1>Portfolio</h1>
+        </nav>
+    </div>
+    <div class="container">
+
+        <main class="main-cnt">
+            {% block main %}
+            <form action="" class="form-cnt" method="post">
+                {% csrf_token %}
+                <div class="form-title">
+                    <h1 class="title">Sign In</h1>
                 </div>
-                <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password">
-                    <i class="fa-solid fa-lock"></i>
-                    <div id="password_error" class="error">{{ error }}</div>
-                </div>
-            </div>
-            <div class="invalid-credential-error-cnt">
-                <div class="error"><!-- User does not exist --></div>
-            </div>
-            <div class="form-links-cnt">
-                <div class="form-links">
-                    <div class="forget-pwd">
-                        <a href="">Forgot password?</a>
+                <div class="input-cnt">
+                    <div class="input-box">
+                        <input type="text" name="uname_or_email" id="uname_or_email" placeholder="Username">
+                        <i class="fa-solid fa-user"></i>
+                        <div id="uname_or_email_error" class="error"></div>
                     </div>
-                    <div class="signin">
-                        <p>Don't have an account? <a href="{% url 'personal_details_form' %}">Sign Up</a></p>
+                    <div class="input-box">
+                        <input type="password" name="password" id="password" placeholder="Password">
+                        <i class="fa-solid fa-lock"></i>
+                        <div id="password_error" class="error">{{ error }}</div>
                     </div>
                 </div>
-            </div>
-            <div class="submit-cnt">
-                <input type="submit" value="Sign Up" class="signup-btn">
-            </div>
-        </form>
-        {% endblock %}
-    </main>
+                <div class="invalid-credential-error-cnt">
+                    <div class="error"><!-- User does not exist --></div>
+                </div>
+                <div class="form-links-cnt">
+                    <div class="form-links">
+                        <div class="forget-pwd">
+                            <a href="">Forgot password?</a>
+                        </div>
+                        <div class="signin">
+                            <p>Don't have an account? <a href="{% url 'user_signup' %}">Sign Up</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-cnt">
+                    <input type="submit" value="Sign In" class="signup-btn">
+                </div>
+            </form>
+            {% endblock %}
+        </main>
+    </div>
     {% block script %}
     <!-- Script file -->
     <script src="{% static 'js/login.js' %}"></script>

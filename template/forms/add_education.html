@@ -1,0 +1,37 @@
+{% extends './base_form.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit Education</h2>
+    <form action="{% url 'add_education' %}" method="POST">
+        {% csrf_token %}
+
+        <label for="degree">Degree</label>
+        <input type="text" id="degree" name="degree" placeholder="e.g., Bachelor of Engineering (BE)" required>
+
+        <label for="school_name">School / University</label>
+        <input type="text" id="school_name" name="school_name" placeholder="e.g., K Ramakrishnan College of Technology" required>
+
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course" placeholder="e.g., Computer Science and Engineering" required>
+
+        <label for="grade">Grade / CGPA</label>
+        <input type="text" id="grade" name="grade" placeholder="e.g., 8.54" required>
+
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date" name="start_date" required>
+
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date" name="end_date">
+
+        <button type="submit">Add Education</button>
+    </form>
+</div>
+{% endblock %}

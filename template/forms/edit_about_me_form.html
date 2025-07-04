@@ -1,0 +1,25 @@
+{% extends './base_form.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit About Section</h2>
+    <form action="{% url 'update_about' uname %}" method="POST">
+        {% csrf_token %}
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="about_me">About Me</label>
+        <textarea id="about_me" name="about_me" rows="10" required>{{ user_about.about_me }}</textarea>
+
+        <button type="submit">Update About</button>
+    </form>
+</div>
+{% endblock %}

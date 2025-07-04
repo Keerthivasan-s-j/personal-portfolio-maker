@@ -20,99 +20,155 @@
 </head>
 <body>
     {% block nav %}
-    <nav class="nav-bar">
-        <div class="logo-nav-links">
-            <div class="logo-cnt">
-                <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
-                <h1 class="logo-name">Portfolio</h1>
-            </div>
-            <div class="nav-links">
-                <a href="{% url 'home' %}" class="nav-link b">Home</a>
-                <a href="" class="nav-link b">About</a>
-                <a href="" class="nav-link b">Contact</a>
-                <a href="" class="nav-link b">Blogs</a>
-            </div>
-        </div>
-        <div class="searchbar-profile-cnt">
-            <form class="searchbar-cnt" method="post">
-                {% csrf_token %}
-                <div class="searchbox">
-                    <input type="text" id="search" name="search" placeholder="Type to search" class="search">
-                </div>
-                <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            {% if not user.is_authenticated %}
-                <div class="login-signup-cnt">
-                    <a href="{% url 'user_login' %}" class="nav-link"><button type="button" class="signin-signup-btn">Sign In / Sign Up</button></a>
-                </div>
-            {% else %}
-                <div class="user-profile-cnt">
-                    <div class="notification">
-                        <i class="fa-regular fa-bell"></i>
-                    </div>
-                    <div class="user-profile-dropdown">
-                        <div class="user-profile">
-                            <img src="{{ logged_user.profile_picture.url }}" alt="" class="user-profile-photo">
+    <nav>
+        <section class="nav-bar-cnt">
+            <div class="container">
+                <div class="nav-bar">
+                    <div class="logo-nav-links">
+                        <div class="logo-cnt">
+                            <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="40px">
+                            <h1 class="logo-name">Portfolio</h1>
                         </div>
-                        <i class="fa-solid fa-chevron-down"></i>
+                        <div class="nav-links" id="navLinks">
+                            <a href="{% url 'home' %}" class="nav-link b">Home</a>
+                            <a href="{% url 'about' %}" class="nav-link b">About</a>
+                            <a href="https://keerthivasan-s-j.github.io/DigitalProfiles/" class="nav-link b">Contact</a>
+                        </div>
                     </div>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-menu-link" href="{% url 'user_profile' user.username %}"><i class="fa-solid fa-user"></i> Profile</a>
-                        {% if user.is_staff %}
-                        <a class="dropdown-menu-link" href="{% url 'admin:index' %}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-                        {% endif %}
-                        <a class="dropdown-menu-link" href=""><i class="fa-solid fa-gear"></i> Settings</a>
-                        <a class="dropdown-menu-link" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                    <div class="searchbar-profile-cnt">
+                        <form class="searchbar-cnt" method="post">
+                            {% csrf_token %}
+                            <div class="searchbox">
+                                <input type="text" id="search" name="search" placeholder="Type to search" class="search">
+                            </div>
+                            <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                        <div class="nav-profile-cnt">
+                            {% if not user.is_authenticated %}
+                            <div class="login-signup-cnt">
+                                <a href="{% url 'user_login' %}" class="nav-link"><button type="button" class="signin-signup-btn">Sign In / Sign Up</button></a>
+                            </div>
+                            {% else %}
+                            <div class="user-profile-cnt">
+                                <div class="notification">
+                                    <i class="fa-regular fa-bell"></i>
+                                </div>
+                                <div class="user-profile-dropdown">
+                                    <div class="user-profile">
+                                        {% if logged_user.profile_picture %}
+                                            <img src="{{ logged_user.profile_picture.url }}" alt="Profile Picture" class="user-profile-photo">
+                                        {% else %}
+                                            <div class="default-profile">
+                                                <p>{{ logged_user.name|slice:":1"|upper }}</p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                                <div class="dropdown-menu">
+                                    <form class="searchbar-cnt dropdown-search" method="post">
+                                        {% csrf_token %}
+                                        <div class="searchbox">
+                                            <input type="text" id="search" name="search" placeholder="Type to search" class="search">
+                                        </div>
+                                        <button type="submit" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    </form>
+                                    <a class="dropdown-menu-link" href="{% url 'user_profile' user.username %}"><i class="fa-solid fa-user"></i> Profile</a>
+                                    {% if user.is_staff %}
+                                    <a class="dropdown-menu-link" href="{% url 'admin:index' %}"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                                    {% endif %}
+                                    <a class="dropdown-menu-link" href="{% url 'home' %}"><i class="fa-solid fa-house"></i> Home</a>
+                                    <a class="dropdown-menu-link" href="{% url 'about' %}"><i class="fa-solid fa-address-card"></i> About</a>
+                                    <a class="dropdown-menu-link" href="https://keerthivasan-s-j.github.io/DigitalProfiles/"><i class="fa-solid fa-phone"></i> Contact</a>
+                                    <a class="dropdown-menu-link" href="{% url 'user_logout' %}"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                                </div>
+                            </div> 
+                            {% endif %}
+                        </div>
                     </div>
-                </div> 
-            {% endif %}
-        </div>
+                </div>
+            </div>
+        </section>
     </nav>
     {% endblock %}
-    <main class="main-cnt">
-        {% block main %}
-        {% endblock %}
-    </main>
+    <div class="container">
+        <main class="main-cnt">
+            {% block main %}
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Build Your Personal Brand</h1>
+                    <p>Create your professional portfolio in minutes. Highlight your skills, projects, experience, and more.</p>
+                    {% if not user.is_authenticated %}
+                    <a href="{% url 'user_signin' %}">
+                        <button class="get-started-btn">Get Started for Free</button>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'user_profile' user.username %}">
+                        <button class="get-started-btn">Go to Your Portfolio</button>
+                    </a>
+                    {% endif %}
+                </div>
+            </section>
+    
+            <section class="featured-profiles">
+                <h2 class="section-title">Featured Portfolios</h2>
+                <div class="profiles-grid">
+                    {% for profile in featured_profiles %}
+                    <div class="profile-card">
+                        <img src="{{ profile.profile_picture.url }}" alt="profile" class="profile-img">
+                        <h3>{{ profile.name }}</h3>
+                        <p>{{ profile.about_me.title }}</p>
+                        <a href="{% url 'user_profile' profile.user.username %}" class="view-profile-btn">View Profile</a>
+                    </div>
+                    {% empty %}
+                    <p>No featured profiles yet.</p>
+                    {% endfor %}
+                </div>
+            </section>
+    
+            {% endblock %}
+        </main>
+    </div>
     {% block footer %}
     <footer class="footer-cnt">
-        <div class="footer-cols">
-            <div class="footer-about">
-                <h3 class="title">About</h3>
-                <p class="about-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. At sit similique dignissimos minima odio excepturi, possimus, culpa eius aliquid laboriosam reiciendis quos aperiam? Possimus molestiae sunt vitae, quod neque dolor?</p>
-                <div class="social-links-icons">
-                    <a href=""><i class="fa-brands fa-linkedin"></i></a>
-                    <a href=""><i class="fa-brands fa-github"></i></a>
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                    <a href=""><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href=""><i class="fa-brands fa-x-twitter"></i></a>               
+        <div class="container">
+            <div class="footer-cols">
+                <div class="footer-about">
+                    <h3 class="title">About</h3>
+                    <p class="about-details">Public Portfolio Maker is a simple and powerful platform that helps students, developers, and professionals create and manage their own digital portfolios with ease. Whether you're showcasing your skills, projects, certifications, or work experience, our tool lets you build a personalized and professional portfolio without writing a single line of code.</p>
+                    <div class="social-links-icons">
+                        <a href="https://www.linkedin.com/in/keerthivasansj16/"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/Keerthivasan-s-j"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.instagram.com/keerthivasan_s_j/?hl=en"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact-cnt">
+                    <h3 class="title">Contact Information</h3>
+                    <div class="contact-details">
+                        <p>Have a project idea? Click the button below to email me, and let's make it happen!</p>
+                        <p>Let's create something amazing together.</p>
+                    </div>
+                    <div class="mail-btn-cnt">
+                        <button class="mail-btn" type="button"><i class="fa-solid fa-envelope"></i> Let's Collaborate!</button>
+                    </div>
+                </div>
+                <div class="footer-nav-cnt">
+                    <h3 class="title">Navigations</h3>
+                    <div class="footer-nav">
+                        <a href="{% url 'home' %}" class="footer-nav-link">Home</a>
+                        <a href="{% url 'about' %}" class="footer-nav-link">About</a>
+                        <a href="https://keerthivasan-s-j.github.io/DigitalProfiles/" class="footer-nav-link">Contact</a>
+                        <!-- <a href="" class="footer-nav-link">Blogs</a> -->
+                    </div>
                 </div>
             </div>
-            <div class="footer-contact-cnt">
-                <h3 class="title">Contact Information</h3>
-                <div class="contact-details">
-                    <p>Have a project idea? Click the button below to email me, and let's make it happen!</p>
-                    <p>Let's create something amazing together.</p>
-                </div>
-                <div class="mail-btn-cnt">
-                    <button class="mail-btn" type="button"><i class="fa-solid fa-envelope"></i> Let's Collaborate!</button>
-                </div>
+            <div class="copyright">
+                <p>&copy;2024 reserved portfolio.com</p>
             </div>
-            <div class="footer-nav-cnt">
-                <h3 class="title">Navigations</h3>
-                <div class="footer-nav">
-                    <a href="" class="footer-nav-link">Home</a>
-                    <a href="" class="footer-nav-link">About</a>
-                    <a href="" class="footer-nav-link">Contact</a>
-                    <a href="" class="footer-nav-link">Blogs</a>
-                </div>
+            <div class="footer-logo">
+                <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="30px">
+                <h2 class="logo-name">Portfolio</h2>
             </div>
-        </div>
-        <div class="copyright">
-            <p>&copy;2024 reserved portfolio.com</p>
-        </div>
-        <div class="footer-logo">
-            <img src="{% static 'images/logo/logo.png' %}" alt="logo" width="30px">
-            <h2 class="logo-name">Portfolio</h2>
         </div>
     </footer>
     {% endblock %}

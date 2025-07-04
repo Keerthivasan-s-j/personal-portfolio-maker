@@ -1,0 +1,30 @@
+
+
+.about-card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    min-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.about-card p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+.about-card ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #444;
+}

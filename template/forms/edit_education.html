@@ -1,0 +1,37 @@
+{% extends './base_form.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit Education</h2>
+    <form action="{% url 'edit_education' education.id %}" method="POST">
+        {% csrf_token %}
+
+        <label for="degree">Degree</label>
+        <input type="text" id="degree" name="degree" value="{{ education.degree }}" placeholder="e.g., Bachelor of Engineering (BE)" required>
+
+        <label for="school_name">School / University</label>
+        <input type="text" id="school_name" name="school_name" value="{{ education.school_name }}" placeholder="e.g., K Ramakrishnan College of Technology" required>
+
+        <label for="course">Course</label>
+        <input type="text" id="course" name="course" value="{{ education.course }}" placeholder="e.g., Computer Science and Engineering" required>
+
+        <label for="grade">Grade / CGPA</label>
+        <input type="text" id="grade" name="grade" value="{{ education.grade }}" placeholder="e.g., 8.54" required>
+
+        <label for="start_date">Start Date</label>
+        <input type="date" id="start_date" name="start_date" value="{{ education.start_date|date:'Y-m-d' }}" required>
+
+        <label for="end_date">End Date</label>
+        <input type="date" id="end_date" name="end_date" value="{{ education.end_date|date:'Y-m-d' }}">
+
+        <button type="submit">Update Education</button>
+    </form>
+</div>
+{% endblock %}

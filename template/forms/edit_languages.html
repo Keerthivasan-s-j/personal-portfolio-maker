@@ -1,0 +1,191 @@
+{% extends './base_form.html' %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+<style>
+    .tag-box {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: #fff;
+        margin-top: 10px;
+        min-height: 40px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .tag {
+        background: #17a2b8;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+    }
+
+    .tag select {
+        border-radius: 8px;
+        border: none;
+        padding: 2px 6px;
+        font-size: 12px;
+        background: white;
+        color: black;
+    }
+
+    .tag button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    #languageInput, #langProficiencySelect {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 6px;
+        margin-top: 10px;
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 700px;
+        margin: 40px auto;
+        padding: 20px;
+        background: #fdfdfd;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    #addLanguage, button[type="submit"] {
+        margin-top: 20px;
+        padding: 10px 15px;
+        background: #28a745;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    #addLanguage, button[type="submit"]:hover {
+        background: #218838;
+    }
+</style>
+{% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit Languages</h2>
+    <form id="languageForm" action="{% url 'update_languages' %}" method="POST">
+        {% csrf_token %}
+
+        <label>Languages</label>
+        <div>
+            <input type="text" id="languageInput" placeholder="Enter language">
+            <select id="langProficiencySelect">
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Expert">Expert</option>
+            </select>
+            <button type="button" id="addLanguage">Add</button>
+        </div>
+
+        <div class="tag-box" id="tagBox">
+            {% for lang in languages %}
+                <span class="tag" data-language="{{ lang.language }}" data-proficiency="{{ lang.proficiency }}">
+                    {{ lang.language }}
+                    <select onchange="updateProficiency(this)">
+                        <option value="Beginner" {% if lang.proficiency == 'Beginner' %}selected{% endif %}>Beginner</option>
+                        <option value="Intermediate" {% if lang.proficiency == 'Intermediate' %}selected{% endif %}>Intermediate</option>
+                        <option value="Expert" {% if lang.proficiency == 'Expert' %}selected{% endif %}>Expert</option>
+                    </select>
+                    <button type="button" onclick="removeTag(this)">×</button>
+                </span>
+            {% endfor %}
+        </div>
+
+        <input type="hidden" name="languages_data" id="languagesData">
+        <button type="submit">Save Languages</button>
+    </form>
+</div>
+
+<script>
+    const languageInput = document.getElementById("languageInput");
+    const langProficiencySelect = document.getElementById("langProficiencySelect");
+    const tagBox = document.getElementById("tagBox");
+    const languagesData = document.getElementById("languagesData");
+    const addLanguageBtn = document.getElementById("addLanguage");
+
+    // Function to get all current tags
+    function getTags() {
+        return Array.from(tagBox.querySelectorAll(".tag")).map(tag => {
+            return {
+                language: tag.dataset.language,
+                proficiency: tag.dataset.proficiency
+            };
+        });
+    }
+
+    // Remove tag from DOM
+    function removeTag(btn) {
+        btn.parentElement.remove();
+    }
+
+    // Update tag dataset on select change
+    function updateProficiency(selectElement) {
+        const tag = selectElement.parentElement;
+        tag.dataset.proficiency = selectElement.value;
+    }
+
+    // Function to add a new language tag
+    function addLanguageTag() {
+        const language = languageInput.value.trim();
+        const proficiency = langProficiencySelect.value;
+
+        if (language && !getTags().some(t => t.language.toLowerCase() === language.toLowerCase())) {
+            const tag = document.createElement("span");
+            tag.className = "tag";
+            tag.dataset.language = language;
+            tag.dataset.proficiency = proficiency;
+
+            tag.innerHTML = `
+                ${language}
+                <select onchange="updateProficiency(this)">
+                    <option value="Beginner" ${proficiency === 'Beginner' ? 'selected' : ''}>Beginner</option>
+                    <option value="Intermediate" ${proficiency === 'Intermediate' ? 'selected' : ''}>Intermediate</option>
+                    <option value="Expert" ${proficiency === 'Expert' ? 'selected' : ''}>Expert</option>
+                </select>
+                <button type="button" onclick="removeTag(this)">×</button>
+            `;
+            tagBox.appendChild(tag);
+            languageInput.value = "";
+        }
+    }
+
+    // Trigger adding on Enter key
+    languageInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            addLanguageTag();
+        }
+    });
+
+    // Trigger adding on "Add" button click
+    addLanguageBtn.addEventListener("click", function () {
+        addLanguageTag();
+    });
+
+    // Collect all tag data on form submit
+    document.getElementById("languageForm").addEventListener("submit", function () {
+        languagesData.value = JSON.stringify(getTags());
+    });
+</script>
+{% endblock %}

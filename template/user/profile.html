@@ -12,7 +12,13 @@
     <div class="profile-cnt">
         <div class="profile">
             <div class="profile-photo-cnt">
-                <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-photo">
+                {% if user_profile.profile_picture %}
+                    <img src="{{ user_profile.profile_picture.url }}" alt="Profile Picture" class="profile-photo">
+                {% else %}
+                    <div class="default-profile">
+                        <p>{{ user_profile.name|slice:":1"|upper }}</p>
+                    </div>
+                {% endif %}
             </div>
             {% if edit_access %}
             <div class="edit-cnt">
@@ -24,7 +30,7 @@
             <div class="name-cnt">
                 <h1 class="name">{{ user_profile.name }} <span class="pronouns">({{ user_profile.pronouns }})</span></h1>
                 {% if edit_access %}
-                <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                <a href="{% url 'edit_profile_form' user_profile.user.username %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
                 {% endif %}
             </div>
             <h3 class="uname"><i class="fa-regular fa-id-badge"></i> {{ user_profile.user.username }}</h3>
@@ -37,11 +43,11 @@
                 <span class="open-to-work"><i class="fa-solid fa-briefcase"></i> Open to Work</span>
                 {% endif %}
                 <a href="{{ user_profile.resume.url }}" download="Resume.pdf"><button type="button" class="resume"><i class="fa-solid fa-file"></i> Resume</button></a>
+                <div class="share-cnt">
+                    <button type="button" class="share-btn">Share <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="share-cnt">
-        <button type="button" class="share-btn">Share <i class="fa-solid fa-arrow-up-from-bracket"></i></button>
     </div>
 </div>
 
@@ -52,7 +58,7 @@
         <h1 class="profile-about-title">{{ user_about.title }}</h1>
         {% if edit_access %}
         <div class="edit-cnt">
-            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <a href="{% url 'edit_about_me_form' uname %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
         </div>
         {% endif %}
     </div>
@@ -65,13 +71,13 @@
 {% endif %}
 
 <!-- Experience -->
-{% if user_experience %}
+{% if edit_access or user_experience %}
 <div class="experiences-cnt">
     <div class="experiences-title-cnt">
         <h1 class="experiences-title">Experience <i class="fa-solid fa-briefcase"></i></h1>
         {% if edit_access %}
         <div class="add-btn">
-            <i class="fa-regular fa-square-plus"></i>
+            <a href="{% url 'add_experience' uname %}"><i class="fa-regular fa-square-plus"></i></a>
         </div>
         {% endif %}
     </div>
@@ -84,7 +90,7 @@
                     <h2 class="job-role">{{ experience.title }} | {{ experience.company }}</h2>
                     {% if edit_access %}
                     <div class="edit-cnt">
-                        <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                        <a href="{% url 'edit_experience' experience.id %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
                     </div>
                     {% endif %}
                 </div>
@@ -92,15 +98,16 @@
                 <div class="experience-description-cnt">
                     <p class="experience-description">{{ experience.description }}</p>
                 </div>
+                {% if edit_access %}
+                <form class="del_form" action="{% url 'del_user_experienc' experience.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">
+                        <i class="fa-regular fa-trash-can"></i>
+                        Delete
+                    </button>
+                </form>
+                {% endif %}
             </div>
-            {% if edit_access %}
-            <form class="del_form" action="{% url 'del_user_experienc' experience.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="delete-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                </button>
-            </form>
-            {% endif %}
         </div>
         {% endfor %}
         <!--  -->
@@ -109,13 +116,13 @@
 {% endif %}
 
 <!-- Education -->
-{% if user_educations %}
+{% if edit_access or user_educations %}
 <div class="education-cnt">
     <div class="education-title-cnt">
         <h1 class="education-title">Education <i class="fa-solid fa-graduation-cap"></i></h1>
         {% if edit_access %}
         <div class="add-btn">
-            <i class="fa-regular fa-square-plus"></i>
+            <a href="{% url 'add_education' %}"><i class="fa-regular fa-square-plus"></i></a>
         </div>
         {% endif %}
     </div>
@@ -129,23 +136,24 @@
                         <h2 class="institution-name">{{ education.school_name }}</h2>
                         {% if edit_access %}
                         <div class="edit-cnt">
-                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                            <a href="{% url 'edit_education' education.id %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
                         </div>
                         {% endif %}
                     </div>
                     <h4 class="degree">{{ education.degree }} <span class="grade">Grade : {{ education.grade }}</span></h4>
                     <p class="area-of-study">{{ education.course }}</p>
                     <p class="duration">{{ education.start_date }} - {{ education.end_date }}</p>
+                    {% if edit_access %}
+                    <form class="del_form" action="{% url 'del_user_education' education.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-btn">
+                            <i class="fa-regular fa-trash-can"></i>
+                            Delete
+                        </button>
+                    </form>
+                    {% endif %}
                 </div>
             </div>
-            {% if edit_access %}
-            <form class="del_form" action="{% url 'del_user_education' education.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="delete-btn">
-                    <i class="fa-regular fa-trash-can"></i>
-                </button>
-            </form>
-            {% endif %}
         </div>
         {% endfor %}
     </div>
@@ -153,13 +161,13 @@
 {% endif %}
 
 <!-- Certificates -->
-{% if user_certificates %}
+{% if edit_access or user_certificates %}
 <div class="certifications-cnt">
     <div class="certification-title-cnt">
         <h1 class="certification-title">Certifications <i class="fa-solid fa-award"></i></h1>
         {% if edit_access %}
         <div class="add-btn">
-            <i class="fa-regular fa-square-plus"></i>
+            <a href="{% url 'add_certificate' %}"><i class="fa-regular fa-square-plus"></i></a>
         </div>
         {% endif %}
     </div>
@@ -176,7 +184,7 @@
                         <h2 class="certificate-name">{{ certificate.title }}</h2>
                         {% if edit_access %}
                         <div class="edit-cnt">
-                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                            <a href="{% url 'edit_certificate' certificate.id %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
                         </div>
                         {% endif %}
                     </div>
@@ -184,16 +192,19 @@
                         <h4 class="issued-by">Issued By: {{ certificate.issued_by }}</h4>
                         <p class="issued-by">Issued On: {{ certificate.issued_on }}</p>
                     </div>
-                    <a href="{{ certificate.certificate_url }}"><button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button></a>
+                    <div class="buttons-grid">
+                        <a href="{{ certificate.certificate_url }}"><button type="button" class="view-certificate-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Certificate</button></a>
+                        {% if edit_access %}
+                        <form class="del_form" action="{% url 'del_user_certificate' certificate.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn">
+                                <i class="fa-regular fa-trash-can"></i>
+                                Delete
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
-                {% if edit_access %}
-                <form class="del_form" action="{% url 'del_user_certificate' certificate.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="delete-btn">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
-                </form>
-                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -203,13 +214,13 @@
 {% endif %}
 
 <!-- Projects -->
- {% if user_projects %}
+ {% if edit_access or user_projects %}
 <div class="project-cnt">
     <div class="project-title-cnt">
         <h1 class="project-title">Projects <i class="fa-solid fa-gear"></i></h1>
         {% if edit_access %}
         <div class="add-btn">
-            <i class="fa-regular fa-square-plus"></i>
+            <a href="{% url 'add_project' %}"><i class="fa-regular fa-square-plus"></i></a>
         </div>
         {% endif %}
     </div>
@@ -225,7 +236,7 @@
                         <h2 class="project-name">{{ project.title }}</h2>
                         {% if edit_access %}
                         <div class="edit-cnt">
-                            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+                            <a href="{% url 'edit_project' project.id %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
                         </div>
                         {% endif %}
                     </div>
@@ -235,16 +246,19 @@
                     <div class="certificate-description-cnt">
                         <p class="certificate-description">{{ project.description }}</p>
                     </div>
-                    <a href="{{ project.project_url }}"><button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button></a>
+                    <div class="buttons-grid">
+                        <a href="{{ project.project_url }}"><button type="button" class="view-project-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Project</button></a>
+                        {% if edit_access %}
+                        <form class="del_form" action="{% url 'del_user_project' project.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn">
+                                <i class="fa-regular fa-trash-can"></i>
+                                Delete
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
                 </div>
-                {% if edit_access %}
-                <form class="del_form" action="{% url 'del_user_project' project.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="delete-btn">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </button>
-                </form>
-                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -253,13 +267,13 @@
 {% endif %}
 
 <!-- Skills -->
- {% if user_skills %}
+ {% if edit_access or user_skills %}
 <div class="profile-skills-cnt">
     <div class="profile-skills-title-cnt">
         <h1 class="profile-skills-title">Skills <i class="fa-solid fa-person-snowboarding"></i></h1>
         {% if edit_access %}
         <div class="edit-cnt">
-            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <a href="{% url 'update_skills' %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
         </div>
         {% endif %}
     </div>
@@ -286,13 +300,13 @@
 {% endif %}
 
 <!-- Languages Known -->
- {% if user_languages %}
+ {% if edit_access or user_languages %}
 <div class="languages-known-cnt">
     <div class="languages-known-title-cnt">
         <h1 class="languages-known-title">Languages Known <i class="fa-solid fa-earth-asia"></i></h1>
         {% if edit_access %}
         <div class="edit-cnt">
-            <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
+            <a href="{% url 'update_languages' %}"><button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button></a>
         </div>
         {% endif %}
     </div>
@@ -319,10 +333,10 @@
 {% endif %}
 
 <!-- Testimonials -->
-<div class="testimonials-cnt">
+<!-- <div class="testimonials-cnt">
     <div class="testimonials-title-cnt">
         <h1 class="testimonials-title">Testimonials <i class="fa-solid fa-comment-dots"></i></h1>
-        {% if edit_access %}
+        {% if not edit_access %}
         <div class="edit-cnt">
             <button type="button" class="edit-btn"><i class="fa-solid fa-pen"></i></button>
         </div>
@@ -338,5 +352,5 @@
             <p class="message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam vel molestiae sint? Sunt vel sapiente accusantium illo quos porro delectus consectetur eaque, sit voluptates asperiores a quaerat optio architecto dicta?</p>
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}

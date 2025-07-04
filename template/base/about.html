@@ -1,0 +1,55 @@
+{% extends 'base/home.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>About | Public Portfolio Maker</title>
+{% endblock %}
+
+{% block stylesheet %}
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    
+</div>
+<section class="about-section">
+    <div class="container">
+        <div class="about-card">
+            <h1 class="section-title">About This Project</h1>
+            <p>
+                <strong>Public Portfolio Maker</strong> is a web application designed to help users build and showcase their professional portfolios with ease. 
+                Users can add details like skills, certifications, experience, education, and projects — all from a user-friendly interface.
+                The platform generates a personalized public page that can be shared as a digital resume or portfolio.
+            </p>
+
+            <h2 class="mt-5">About the Developer</h2>
+            <p>
+                Hi! I'm <strong>Keerthivasan S J</strong>, the developer behind this project. I'm a Computer Science Engineering student with a passion for web development and Python programming. 
+                I created this project to simplify personal branding for students, developers, and professionals who want to present their work beautifully online without having to write code.
+            </p>
+            <p>
+                This project is built using <strong>Django</strong> for the backend, with support for features like template inheritance, static file handling, and dynamic profile rendering. 
+                I'm continuously working to improve the project with future features like drag-and-drop content arrangement and theme customization.
+            </p>
+
+            <h2 class="mt-5">Tech Stack</h2>
+            <ul>
+                <li><strong>Backend:</strong> Django (Python)</li>
+                <li><strong>Frontend:</strong> HTML, CSS, Bootstrap (or Tailwind if used)</li>
+                <li><strong>Database:</strong> SQLite (default) or MySQL</li>
+                <li><strong>Version Control:</strong> Git & GitHub</li>
+            </ul>
+
+            <h2 class="mt-5">Connect with Me</h2>
+            <p>
+                Feel free to reach out via my <a href="https://www.linkedin.com/in/keerthivasansj/" target="_blank">LinkedIn</a> or explore more of my work on 
+                <a href="https://github.com/keerthivasansj" target="_blank">GitHub</a>.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends './login.html' %}
+
+{% load static %}
+
+{% block main %}
+<form action="" class="form-cnt" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-title">
+        <h1 class="title">Sign Up</h1>
+    </div>
+
+    {% if messages %}
+    <div class="form-messages">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Username -->
+    <div class="input-box">
+        <input type="text" name="username" placeholder="Username" required>
+        <i class="fa-solid fa-user"></i>
+    </div>
+
+    <!-- First name -->
+    <div class="input-box">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <i class="fa-solid fa-signature"></i>
+    </div>
+
+    <!-- Last name -->
+    <div class="input-box">
+        <input type="text" name="last_name" placeholder="Last Name" required>
+        <i class="fa-solid fa-signature"></i>
+    </div>
+
+    <!-- Email -->
+    <div class="input-box">
+        <input type="email" name="email" placeholder="Email (optional)">
+        <i class="fa-solid fa-envelope"></i>
+    </div>
+
+    <!-- Password -->
+    <div class="input-box">
+        <input type="password" name="password" placeholder="Password" required>
+        <i class="fa-solid fa-lock"></i>
+    </div>
+
+    <!-- Pronouns -->
+    <div class="input-box">
+        <select name="pronouns" required>
+            <option value="" disabled selected>Select Pronouns</option>
+            <option value="she/her">She/Her</option>
+            <option value="he/him">He/Him</option>
+            <option value="they/them">They/Them</option>
+        </select>
+        <i class="fa-solid fa-venus-mars"></i>
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="input-box">
+        <input type="date" name="dob" placeholder="Date of Birth" required>
+        <i class="fa-solid fa-calendar-days"></i>
+    </div>
+
+    <!-- Location -->
+    <div class="input-box">
+        <input type="text" name="location" placeholder="Location (e.g., Salem)" required>
+        <i class="fa-solid fa-location-dot"></i>
+    </div>
+
+    <!-- Resume Upload -->
+    <div class="input-box">
+        <input type="file" name="resume" accept=".pdf,.doc,.docx">
+        <i class="fa-solid fa-file-arrow-up"></i>
+    </div>
+    
+    <!-- Status -->
+    <div class="input-box">
+        <div class="work">
+            <input type="checkbox" id="open_to_work" name="open_to_work" {% if user_profile.open_to_work %}checked{% endif %}>
+            <label for="open_to_work">Open to Work</label>
+        </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-cnt">
+        <input type="submit" value="Create Account" class="signup-btn">
+    </div>
+
+    <!-- Already have account -->
+    <div class="form-links-cnt">
+        <p>Already have an account? <a href="{% url 'user_login' %}">Login</a></p>
+    </div>
+</form>
+{% endblock %}
+
+{% block script %}
+<!-- Script file -->
+<script src="{% static 'js/signin.js' %}"></script>
+{% endblock %}

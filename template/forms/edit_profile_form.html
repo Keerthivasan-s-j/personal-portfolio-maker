@@ -1,0 +1,77 @@
+
+{% extends './base_form.html' %}
+
+{% load static %}
+
+{% block stylesheet %}
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="{% static 'css/base_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit_profile.css' %}">
+    {% endblock %}
+
+{% block form %}
+<div class="form-container">
+    <h2>Edit Profile</h2>
+    <form action="{% url 'update_profile' uname %}" method="POST">
+        {% csrf_token %}
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" value="{{ user_profile.name }}" required>
+
+        <label for="pronouns">Pronouns</label>
+        <input type="text" id="pronouns" name="pronouns" value="{{ user_profile.pronouns }}" required>
+
+        <label for="dob">Date of Birth</label>
+        <input type="date" id="dob" name="dob" value="{{ user_profile.dob|date:'Y-m-d' }}" required>
+
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" value="{{ user_profile.district }}" required>
+
+        <div class="work-cnt">
+            <label for="status">Work Status</label>
+            <div class="work">
+                <input type="checkbox" id="open_to_work" name="open_to_work" {% if user_profile.open_to_work %}checked{% endif %}>
+                <label for="open_to_work">Open to Work</label>
+            </div>
+        </div>
+
+        <label for="resume">Upload Resume</label>
+        <div class="upload-resume">
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" onchange="previewResume()">
+            {% if user_profile.resume %}
+            <p>
+                Current Resume: 
+                <a href="{{ user_profile.resume.url }}" target="_blank">{{ user_profile.resume.name|cut:"resumes/" }}</a>
+            </p>
+            {% endif %}
+        </div>
+        <div id="resume-preview" style="margin-top: 15px;">
+            <!-- Preview appears here -->
+        </div>
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+<script>
+function previewResume() {
+    const fileInput = document.getElementById('resume');
+    const previewContainer = document.getElementById('resume-preview');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        previewContainer.innerHTML = '';
+        return;
+    }
+
+    const fileType = file.type;
+
+    if (fileType === 'application/pdf') {
+        const fileURL = URL.createObjectURL(file);
+        previewContainer.innerHTML = `
+            <iframe src="${fileURL}" width="100%" height="300px" style="border:1px solid #ccc; border-radius:6px;"></iframe>
+        `;
+    } else {
+        previewContainer.innerHTML = `<p>Selected file: <strong>${file.name}</strong></p>`;
+    }
+}
+</script>
+{% endblock %}
